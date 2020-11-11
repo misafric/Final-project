@@ -17,7 +17,7 @@ class ArticleOrder extends Migration
             $table->id();
             $table->unsignedBigInteger('article_id');
             $table->unsignedBigInteger('order_id');
-            $table->unsignedInteger('quantity');         
+            $table->unsignedInteger('order_qty');         
             $table->unsignedInteger('order_unit_price');
         });
     }

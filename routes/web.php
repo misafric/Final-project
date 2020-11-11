@@ -17,4 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::view('/react-test', 'react-test');
+
 Route::get('/api', 'ApiController@index');
