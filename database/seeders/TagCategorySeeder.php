@@ -48,5 +48,15 @@ class TagCategorySeeder extends Seeder
         $query = 'insert into '.$table_name.' ('.$fields_string.') values '.$qm_string;
 
         DB::insert($query, $values_string);
+
+        // DB::insert("INSERT INTO `tag_categories` (`name`) VALUES (?,?,?)", ['Category','Color','Size']);
+
+
+        // DB::insert(
+        //     "INSERT INTO `tag_categories`
+        //     (`name`)
+        //     VALUES
+        //     ('Category','Color','Size')"
+        //     );
     }
 }

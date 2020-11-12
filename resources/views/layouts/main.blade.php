@@ -8,6 +8,6 @@
 </head>
 <body>
     Boop
-    @yield('content');
+    @yield('content')
 </body>
 </html>

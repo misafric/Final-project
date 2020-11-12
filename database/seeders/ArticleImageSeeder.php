@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class TagSeeder extends Seeder
+class ArticleImageSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,26 +14,32 @@ class TagSeeder extends Seeder
      */
     public function run()
     {
-        $table_name = 'tags';
+    
+        $table_name = 'article_image';
         
         DB::table($table_name)->truncate();
 
         $fields = [
-            'tag_category_id',
-            'is_product_tag',
-            'name'
-        ];
-        
-        $values = [
-            [1,1,'Male'],
-            [1,1,'Female'],
-            [2,0,'Black'],
-            [2,0,'Brown'],
-            [3,0,40],
-            [3,0,42],
+            'article_id',
+            'image_id'
         ];
 
-        $fields_string = implode(',', $fields);     //'tag_category_id,is_product_tag,name'
+        $values = [
+            [1,1],
+            [2,1],
+            [3,2],
+            [4,2],
+            [5,3],
+            [6,3],
+            [7,4],
+            [8,4],
+            [9,5],
+            [10,5],
+            [11,6],
+            [12,6]
+        ];
+
+        $fields_string = implode(',', $fields);
 
         $values_string = [];
 
