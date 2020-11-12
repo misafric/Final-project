@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class TagSeeder extends Seeder
+class RoleSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,23 +14,18 @@ class TagSeeder extends Seeder
      */
     public function run()
     {
-        $table_name = 'tags';
+        $table_name = 'roles';
         
         DB::table($table_name)->truncate();
 
         $fields = [
-            'tag_category_id',
-            'is_product_tag',
-            'name'
+            'description'
         ];
-        
+
         $values = [
-            [1,1,'Male'],
-            [1,1,'Female'],
-            [2,0,'Black'],
-            [2,0,'Brown'],
-            [3,0,40],
-            [3,0,42],
+            ['Administrator'],
+            ['Registered User'],
+            ['Anonymous User'],
         ];
 
         $fields_string = implode(',', $fields);
@@ -48,7 +43,6 @@ class TagSeeder extends Seeder
             $qm_array[] = '('.implode(',',array_fill(0,count($value_set),'?')).')';
         }
         
-
         $qm_string = implode(',',$qm_array);
 
         $query = 'insert into '.$table_name.' ('.$fields_string.') values '.$qm_string;
