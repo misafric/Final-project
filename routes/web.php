@@ -19,4 +19,11 @@ Route::get('/', function () {
 
 Route::view('/react-test', 'react-test');
 
+Route::view('/index', 'customer.test');
+Route::get('/product/{id?}/{variant?}', 'Customer\ProductController@show')->name('customer.product.show');
+Route::get('/prepare_product/{id?}', 'Customer\ProductController@prepare')->name('customer.product.prepare');
+
 Route::get('/api', 'ApiController@index');
+
+Route::get('/api/product/{id}/articles/{init_selection?}','Api\Customer\ArticleController@product_articles');
+Route::post('/api/order/add','Api\Customer\OrderController@add');

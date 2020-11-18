@@ -21,16 +21,21 @@ class TagSeeder extends Seeder
         $fields = [
             'tag_category_id',
             'is_product_tag',
-            'name'
+            'name',
+            'is_identifier_tag',
+            'is_filterable_tag'
         ];
         
         $values = [
-            [1,1,'Male'],
-            [1,1,'Female'],
-            [2,0,'Black'],
-            [2,0,'Brown'],
-            [3,0,40],
-            [3,0,42],
+            [1,1,'Male',0,0],
+            [1,1,'Female',0,0],
+            [2,0,'Black',1,1],
+            [2,0,'Brown',1,1],
+            [3,0,40,1,1],
+            [3,0,42,1,1],
+            [4,0,'A',0,1],
+            [4,0,'B',0,1],
+            [5,0,'-30%',0,1],
         ];
 
         $fields_string = implode(',', $fields);

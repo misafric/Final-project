@@ -23,7 +23,8 @@ if (!mix.inProduction()) {
 }
  
 mix.sass('resources/scss/app.scss', 'public/css')
-   .react('resources/js/test-react-app/index.jsx', 'public/js/test-react-app.js')
+//    .react('resources/js/test-react-app/index.jsx', 'public/js/test-react-app.js')
+   .react('resources/js/product-detail-app/index.jsx', 'public/js/product-detail-app.js')
  
     .browserSync({
         host: 'localhost',

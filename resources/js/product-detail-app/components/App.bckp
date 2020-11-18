@@ -1,0 +1,243 @@
+import React, {useState,useEffect} from 'react';
+
+function App() {
+    const product_id = document.querySelector('meta[name="product_id"]').getAttribute('content');
+    const initial_selection = document.querySelector('meta[name="initial_selection"]').getAttribute('content');
+
+    const [{dataSet,loaded},setDataSet] = useState(
+        {
+            dataSet:{},
+            loaded:false
+        }
+    );
+
+    const [availableFilters,setAvailableFilters] = useState(null);
+
+    const [currentSelection,setCurrentSelection] = useState('');
+
+    const [currentSelectionId,setCurrentSelectionId] = useState(
+        window.location.pathname.substring(window.location.pathname.length-3,window.location.pathname.length)
+    );
+
+    const [windowLocation, setWindowLocation] = useState(
+        window.location.pathname.substring(window.location.pathname.length-3,window.location.pathname.length)
+        );
+    
+    const [reloadReady, setReloadReady] = useState(false)
+
+    const [orderQty, setOrderQty] = useState(0);
+
+    // let windowLocation = window.location.href;
+    
+    const createCurrentSelection = (data) => {
+        let result = {values:[]};
+        data.forEach((c) => {
+            result = {...result,[c.name]:c.tags[0].id}
+            result.values.push(c.tags[0].id)
+        });
+        // console.log(result);
+        // console.log('currentSelection created')
+        return result;
+    }
+
+    const fetchData = async() => {
+        // if(!loaded) {
+            const response = await fetch(
+                `/api/product/${product_id}/articles/${initial_selection}`
+            );
+            const data = await response.json();
+            // console.log(data);
+            
+            
+            setAvailableFilters(
+                data.identifier_tags.map((c,i) => {
+                        return ({
+                            name:c.name,
+                            order: i,
+                            values:c.tags.map((t) => { return{name:t.name, value:t.id}})
+                        })
+                    }
+                )
+            )
+
+            // console.log(data.identifier_tags.map((c,i) => {
+            //         return ({
+            //             name:c.name,
+            //             order: i,
+            //             values:c.tags.map((t) => { return{name:t.name, value:t.id}})
+            //         })
+            //     }
+            // ))
+            
+
+            // const check = createCurrentSelection(data.identifier_tags);
+            // console.log(check);
+
+            // if(!reloadReady) 
+            {setCurrentSelection(
+            createCurrentSelection(data.identifier_tags)
+            )}
+
+
+            // console.log(data.identifier_tags.map((c)=> c.tags[0].id).join('-'));
+            // setCurrentSelectionId(
+            //     data.identifier_tags.map((c)=> c.tags[0].id).join('-')
+            // )
+            
+            setDataSet({dataSet:data,loaded:true});
+        // }
+    };
+
+    const handleFilterChange = (event) => {
+        // console.log('Form change triggered')
+        setCurrentSelection((currentSelection) => {
+            let valueArray = currentSelection.values;
+            valueArray[event.target.id] = event.target.value*1
+            return {...currentSelection,[event.target.name]:event.target.value*1,values: valueArray}
+        });
+        setReloadReady(() => {
+            return true;
+        })
+        // console.log('currentSelection changed from FILTER: ')
+    }
+
+    useEffect(() => {
+        fetchData();
+    }, [])
+
+    useEffect(() => {
+            // console.log(loaded) 
+            if (loaded)
+            {setCurrentSelectionId(() => {
+                // console.log(currentSelection.values)
+                // currentSelection.values && console.log(currentSelection.values.join('-'));
+                return (
+                    currentSelection.values && currentSelection.values.join('-')
+                )
+                })
+            // console.log('currentSelectionID changed from EFFECT')
+            }
+    },[currentSelection,dataSet])
+
+    useEffect(() => {
+        // console.log(loaded)
+        // console.log(currentSelection)
+        // console.log(reloadReady)
+        // console.log(currentSelectionId)
+        if (loaded && reloadReady)
+            {setWindowLocation(() => {
+                return currentSelectionId}
+            )
+                // window.location.replace('http://localhost:3000/product/1/'+windowLocation)
+                // console.log('windowLocation changed: ')
+            }
+    } ,[currentSelectionId,loaded,reloadReady])
+
+    const shareURL = () => {
+        const productUrl = window.location.href.substring(0,window.location.href.lastIndexOf('/')+1) 
+        alert('Your friends can find this product at: \n' + productUrl + currentSelectionId)
+    }
+
+    const handleQtyChange = (e) => {
+        setOrderQty(() => {
+                console.log(e.target.value);
+                return e.target.value;
+            }
+        )
+        
+    }
+
+    // const processAjaxData = (response, urlPath) => {
+    //     document.getElementById("content").innerHTML = response.html;
+    //     document.title = response.pageTitle;
+    //     window.history.pushState({"html":response.html,"pageTitle":response.pageTitle},"", urlPath);
+    // }
+
+    useEffect(() => {
+        if(reloadReady) {
+            // console.log(window.location.replace('http://localhost:3000/product/1/'+windowLocation))
+            // window.location.replace('http://localhost:3000/product/1/'+windowLocation)
+
+            // let stateObj = {
+            //     title: 'Title of the page',
+            //     url: 'http://www.example.com',
+            // }
+            
+            history.pushState({},'',windowLocation)
+
+            // processAjaxData(windowLocation);
+        }
+    },[windowLocation,reloadReady])
+
+    return (
+        <>
+            <strong>React</strong>
+            <br/>
+            <br/>
+            {/* Product ID: {product_id}
+
+            <br/>
+            <br/>
+
+            {windowLocation}
+
+            <br/>
+            <br/>
+
+            {currentSelectionId} */}
+
+            {
+                loaded ? (
+                    <div>
+                        Current Article ID is: {dataSet.articles[currentSelectionId].id} <br/>
+                        <br/>
+                        <img src={'/img/' + dataSet.articles[currentSelectionId].images[0].url}
+                            alt={dataSet.articles[currentSelectionId].images[0].url}/> <br/>
+                        {/* <img src="{{mix('img/keen-f-black.jpg')}}" alt="" srcset=""/> */}
+                        
+                        {/* {dataSet.articles[currentSelectionId].images[0]} */}
+
+                        and its tags are: <br/> {dataSet.articles[currentSelectionId].tags.map ((t,i) => {
+                            return <><span key={i}>{t.name}</span><br/></>
+                        })}
+
+                        {availableFilters.map((c) =>
+                            {
+                            return <>
+                                    {c.name}: <select onChange={handleFilterChange} name={c.name} id={c.order} key={'select'+c.order}>
+                                        {c.values.map((v,i) => <option key={'option'+i} value={v.value}>{v.name}</option>)
+                                        }
+
+                                    </select>
+
+
+                                    </>
+                            }
+                        )}
+
+                        <button onClick={shareURL}>Share</button><br/>
+                        
+                        
+                        <div className="order-form">
+                            <input type="hidden" name="product_id" value={product_id} form="order_form"/>
+                            <input type="hidden" name="article_id" value={dataSet.articles[currentSelectionId].id} form="order_form"/>
+                            <input type="number" onChange={handleQtyChange} name="order_qty" value={orderQty} min="0" form="order_form"/>
+                            <input type="submit" value="Order" form="order_form"/>
+                        </div>
+                        
+                        
+                        
+                    </div>
+                ) : (
+                    <div>Loading</div>
+                )
+            }
+
+            {/* <br/>
+            I'm React app and I work with Laravel! How frickin' cool is that?? <br/>
+            <img src="img/timberland-f-black.jpg" alt="timberland-f-black.jpg" /> */}
+        </>
+    )
+}
+
+export default App;
