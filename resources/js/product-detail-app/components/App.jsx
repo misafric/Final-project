@@ -76,6 +76,7 @@ function App() {
             valueArray[event.target.id] = event.target.value*1
             return {...currentSelection,[event.target.name]:event.target.value*1,values: valueArray}
         });
+        console.log(currentSelection.values[1]);
         setReloadReady(() => {
             return true;
         })
@@ -128,10 +129,11 @@ function App() {
                             return (t.is_identifier == 0) ? (<><span key={i}>{t.name}</span><br/></>) : (<></>)
                         })}
 
-                        {availableFilters.map((c) =>
+                        {availableFilters.map((c,i) =>
                             {
                             return <>
-                                    {c.name}: <select onChange={handleFilterChange} name={c.name} id={c.order} key={'select'+c.order}>
+                                    {c.name}: <select onChange={handleFilterChange} name={c.name} id={c.order} key={'select'+c.order}
+                                        value={currentSelection.values[i]} >
                                         {c.values.map((v,i) => <option key={'option'+i} value={v.value}
                                             >{v.name}</option>)
                                         }

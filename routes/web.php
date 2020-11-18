@@ -19,8 +19,6 @@ Route::get('/', function () {
 
 Route::view('/footerheader-test', 'layouts/main');
 
-Route::view('/react-test', 'react-test');
-
 Route::view('/index', 'customer.test');
 Route::get('/product/{id?}/{variant?}', 'Customer\ProductController@show')->name('customer.product.show');
 Route::get('/prepare_product/{id?}', 'Customer\ProductController@prepare')->name('customer.product.prepare');

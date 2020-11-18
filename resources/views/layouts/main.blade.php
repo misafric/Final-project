@@ -14,13 +14,10 @@
 </head>
 <body>
 
-    @yield('header')
-
-    @yield('content')
-
-    @yield('footer')
-    
     @include('common/header')
+    
+    @yield('content')
+    
     @include('common/footer')
 
 </body>
