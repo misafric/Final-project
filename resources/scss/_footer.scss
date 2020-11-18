@@ -1,0 +1,38 @@
+.footer-wrap {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+}
+
+@media screen and (min-width: $small) {
+    .footer-wrap {
+        flex-direction: row;
+        justify-content: space-between;
+        margin-right: 4rem;
+        margin-left: 4rem;
+    }
+}
+
+.footer-icons {
+    height: 1.5rem;
+    width: 2rem;
+}
+
+.contact {
+    display: flex;
+    justify-content: center;
+    height: 200px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.social-network {
+    display: flex;
+    justify-content: center;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
