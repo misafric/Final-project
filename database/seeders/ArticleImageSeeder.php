@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class TagCategorySeeder extends Seeder
+class ArticleImageSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,18 +14,29 @@ class TagCategorySeeder extends Seeder
      */
     public function run()
     {
-        $table_name = 'tag_categories';
+    
+        $table_name = 'article_image';
         
         DB::table($table_name)->truncate();
 
         $fields = [
-            'name'
+            'article_id',
+            'image_id'
         ];
 
         $values = [
-            ['Category'],
-            ['Color'],
-            ['Size']
+            [1,1],
+            [2,1],
+            [3,2],
+            [4,2],
+            [5,3],
+            [6,3],
+            [7,4],
+            [8,4],
+            [9,5],
+            [10,5],
+            [11,6],
+            [12,6]
         ];
 
         $fields_string = implode(',', $fields);
@@ -43,20 +54,11 @@ class TagCategorySeeder extends Seeder
             $qm_array[] = '('.implode(',',array_fill(0,count($value_set),'?')).')';
         }
         
+
         $qm_string = implode(',',$qm_array);
 
         $query = 'insert into '.$table_name.' ('.$fields_string.') values '.$qm_string;
 
         DB::insert($query, $values_string);
-
-        // DB::insert("INSERT INTO `tag_categories` (`name`) VALUES (?,?,?)", ['Category','Color','Size']);
-
-
-        // DB::insert(
-        //     "INSERT INTO `tag_categories`
-        //     (`name`)
-        //     VALUES
-        //     ('Category','Color','Size')"
-        //     );
     }
 }

@@ -23,7 +23,7 @@ class TagSeeder extends Seeder
             'is_product_tag',
             'name'
         ];
-
+        
         $values = [
             [1,1,'Male'],
             [1,1,'Female'],

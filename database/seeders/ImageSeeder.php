@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class TagCategorySeeder extends Seeder
+class ImageSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,18 +14,21 @@ class TagCategorySeeder extends Seeder
      */
     public function run()
     {
-        $table_name = 'tag_categories';
+        $table_name = 'images';
         
         DB::table($table_name)->truncate();
 
         $fields = [
-            'name'
+            'url'
         ];
 
         $values = [
-            ['Category'],
-            ['Color'],
-            ['Size']
+            ['timberland-m-black.jpg'],
+            ['timberland-m-brown.jpg'],
+            ['timberland-f-black.jpg'],
+            ['timberland-f-brown.jpg'],
+            ['keen-f-black.jpg'],
+            ['keen-f-brown.jpg'],
         ];
 
         $fields_string = implode(',', $fields);
@@ -49,14 +52,5 @@ class TagCategorySeeder extends Seeder
 
         DB::insert($query, $values_string);
 
-        // DB::insert("INSERT INTO `tag_categories` (`name`) VALUES (?,?,?)", ['Category','Color','Size']);
-
-
-        // DB::insert(
-        //     "INSERT INTO `tag_categories`
-        //     (`name`)
-        //     VALUES
-        //     ('Category','Color','Size')"
-        //     );
     }
 }
