@@ -20,3 +20,8 @@ Route::get('/', function () {
 Route::view('/react-test', 'react-test');
 
 Route::get('/api', 'ApiController@index');
+
+Route::get('/home', 'Customer\HomeController@index');
+
+Route::get('/product/{id}', 'Product\ProductController@index');
+
