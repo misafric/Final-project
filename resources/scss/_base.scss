@@ -1,0 +1,12 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    color: $black;
+    font-family: $base-font;
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+}
