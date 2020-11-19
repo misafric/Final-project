@@ -20,22 +20,26 @@ class TagSeeder extends Seeder
 
         $fields = [
             'tag_category_id',
-            'is_product_tag',
             'name',
+            'slug',
+            'is_product_tag',
             'is_identifier_tag',
             'is_filterable_tag'
         ];
         
         $values = [
-            [1,1,'Male',0,0],
-            [1,1,'Female',0,0],
-            [2,0,'Black',1,1],
-            [2,0,'Brown',1,1],
-            [3,0,40,1,1],
-            [3,0,42,1,1],
-            [4,0,'A',0,1],
-            [4,0,'B',0,1],
-            [5,0,'-30%',0,1],
+            [1,'Men','men',1,0,0],
+            [1,'Women','women',1,0,0],
+            [1,'Children','children',1,0,0],
+            [1,'Equipment','equipment',1,0,0],
+            [2,'Black','black',0,1,1],
+            [2,'Brown','brown',0,1,1],
+            [3,40,'40',0,1,1],
+            [3,42,'42',0,1,1],
+            [4,'-30%','-30%',0,0,1],
+            [5,'Top Seller','top-seller',0,0,1],
+            [5,'Top Reviews','top-reviews',0,0,1],
+            [5,'Last Chance','last-chance',0,0,1],
         ];
 
         $fields_string = implode(',', $fields);

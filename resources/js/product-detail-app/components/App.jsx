@@ -2,7 +2,6 @@ import React, {useState,useEffect} from 'react';
 
 function App() {
     const product_id = document.querySelector('meta[name="product_id"]').getAttribute('content');
-    // const initial_selection = document.querySelector('meta[name="initial_selection"]').getAttribute('content');
 
     const [{dataSet,loaded},setDataSet] = useState(
         {
@@ -21,7 +20,7 @@ function App() {
     
     const [reloadReady, setReloadReady] = useState(false)
 
-    const [orderQty, setOrderQty] = useState(0);
+    const [orderQty, setOrderQty] = useState(1);
 
     const createCurrentSelection = (data) => {
         let result = {values:[]};
@@ -35,11 +34,6 @@ function App() {
             )
             
         });
-
-        // data.forEach((c) => {
-        //     result = {...result,[c.name]:c.tags[0].id}
-        //     result.values.push(c.tags[0].id)
-        // });
 
         return result;
     }
@@ -148,7 +142,7 @@ function App() {
                         <div className="order-form">
                             <input type="hidden" name="product_id" value={product_id} form="order_form"/>
                             <input type="hidden" name="article_id" value={dataSet.articles[currentSelectionId].id} form="order_form"/>
-                            <input type="number" onChange={handleQtyChange} name="order_qty" value={orderQty} min="0" form="order_form"/>
+                            <input type="number" onChange={handleQtyChange} name="order_qty" value={orderQty} min="1" form="order_form"/>
                             <input type="submit" value="Order" form="order_form"/>
                         </div>
                         

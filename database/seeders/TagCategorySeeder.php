@@ -19,15 +19,15 @@ class TagCategorySeeder extends Seeder
         DB::table($table_name)->truncate();
 
         $fields = [
-            'name','is_identifier','is_filterable'
+            'name','slug','is_identifier','is_filterable'
         ];
 
         $values = [
-            ['Category',0,0],
-            ['Color',1,1],
-            ['Size',1,1],
-            ['Article Tag 1',0,1],
-            ['Sale',0,1],
+            ['Category','category',0,0],
+            ['Color','color',1,1],
+            ['Size','size',1,1],
+            ['Sale','sale',0,1],
+            ['Miscelanous','season',0,1],
         ];
 
         $fields_string = implode(',', $fields);
