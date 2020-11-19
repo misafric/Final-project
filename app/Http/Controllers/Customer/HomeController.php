@@ -13,7 +13,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $tags = DB::select('SELECT * FROM `tags` WHERE `tag_category_id`=1');  
+        $tags = DB::select('SELECT * FROM `tags` WHERE `tag_category_id`=1');
 
         return view('customer/home', compact('tags'));
     }

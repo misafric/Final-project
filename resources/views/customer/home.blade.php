@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('first-section')
+@section('content')
 
 @foreach($tags as $t)
     <div class="img-background img-{{ $t->id }}">	

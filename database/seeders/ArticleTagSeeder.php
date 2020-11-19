@@ -47,7 +47,6 @@ class ArticleTagSeeder extends Seeder
             [6,11],
             [7,6],
             [7,7],
-            [7,8],
             [7,11],
             [7,12],
             [8,6],
