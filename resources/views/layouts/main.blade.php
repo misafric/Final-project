@@ -9,14 +9,12 @@
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <title>Cool E-shop</title>
 
-    
-
 </head>
 <body>
 
     @include('common/header')
 
-    @yield('first-section')
+    @yield('content')
     
     @include('common/footer')
 
