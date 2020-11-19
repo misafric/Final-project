@@ -19,10 +19,17 @@ Route::get('/', function () {
 
 Route::view('/footerheader-test', 'layouts/main');
 
-Route::view('/react-test', 'react-test');
+Route::get('/product/{id?}/{variant?}', 'Customer\ProductController@show')->name('customer.product.show');
+Route::get('/prepare_product/{id?}', 'Customer\ProductController@prepare')->name('customer.product.prepare');
 
 Route::get('/api', 'ApiController@index');
 
+Route::view('/cart', 'customer.cart')->name('cart');
+
+Route::get('/api/product/{id}/articles/{init_selection?}','Api\Customer\ArticleController@product_articles');
+Route::post('/api/cart/add','Api\Customer\CartController@add');
+Route::post('/api/cart/remove','Api\Customer\CartController@remove');
+Route::post('/api/cart/empty','Api\Customer\CartController@empty');
 Route::get('/home', 'Customer\HomeController@index');
 
 Route::get('/product/{id}', 'Product\ProductController@index');

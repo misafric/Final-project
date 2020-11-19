@@ -6,8 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>Eshop</title>
+
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-    <title>Cool E-shop</title>
+    @yield('meta')
 
 </head>
 <body>
