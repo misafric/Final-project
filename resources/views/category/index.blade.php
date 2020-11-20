@@ -1,11 +1,11 @@
 @extends('layouts.main')
 
-@foreach ($products as $p)
+@foreach ($categories as $c)
 
 <article class="product">
     <div>
-        <img class="product__img" src="" alt="{{ $p->name }}"/>
-        <h2 class="product__name">{{ $p->name }}</h2>
+        <img class="product__img" src="" alt="{{ $c->name }}"/>
+        <h2 class="product__name">{{ $c->name }}</h2>
     </div>
 
     <div>

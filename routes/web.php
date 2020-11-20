@@ -32,5 +32,5 @@ Route::post('/api/cart/remove','Api\Customer\CartController@remove');
 Route::post('/api/cart/empty','Api\Customer\CartController@empty');
 Route::get('/home', 'Customer\HomeController@index');
 
-Route::get('/product/{id}', 'Product\ProductController@index');
+Route::get('/category/{id}', 'Category\CategoryController@index');
 
