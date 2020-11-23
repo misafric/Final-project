@@ -10,6 +10,7 @@
 
     <form action="/api/cart/add" method="post" id="order_form">
         @csrf
+        <input type="hidden" name="order_unit_price" value="{{$product["unit_price"]}}">
     </form>
     
     
@@ -18,6 +19,12 @@
     <p>{{$product["description_long"]}}</p>
     
     <div id="app"></div>
+
+    @if (session('status'))
+    <div id="success-message">
+        {{ session('status') }}
+    </div>
+    @endif
 
     <script src="{{mix('js/product-detail-app.js')}}"></script>
 
