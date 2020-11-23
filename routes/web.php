@@ -32,5 +32,8 @@ Route::post('/api/cart/remove','Api\Customer\CartController@remove');
 Route::post('/api/cart/empty','Api\Customer\CartController@empty');
 Route::get('/home', 'Customer\HomeController@index');
 
-Route::get('/product/{id}', 'Product\ProductController@index');
+Route::get('/category/{id}', 'Product\ProductController@index');
+
+Route::post('/add', 'AddController@add');
+Route::post('/try', 'TryController@try');
 
