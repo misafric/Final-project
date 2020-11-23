@@ -1,0 +1,67 @@
+html {
+    font-family: 16px;
+}
+
+.img-background {
+    min-width: 2rem;
+    min-height: 35rem;
+    text-align: center;
+//    width: 500px;
+//    height: 500px;
+//    text-align: center;
+}
+
+.img-1 {
+   background: url('https://cdn.pixabay.com/photo/2017/08/01/14/37/people-2565901_960_720.jpg') center/cover no-repeat;
+}
+
+.img-2 {
+   background: url('https://cdn.pixabay.com/photo/2016/10/22/18/36/climbing-1761386_960_720.jpg') center/cover no-repeat;
+}
+
+.img-3 {
+    background: url('https://cdn.pixabay.com/photo/2017/07/11/20/23/young-swimmer-2494906_960_720.jpg') center/cover no-repeat;
+ }
+
+.img-4 {
+    background: url('https://cdn.pixabay.com/photo/2017/03/27/15/02/adventure-2179256_960_720.jpg') center/cover no-repeat;
+ }
+
+a {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 20px;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    margin-top: 40px;
+}
+
+.nav-Men {
+
+}
+
+.inside a {
+    color: white;
+    margin-top: 50px;
+    margin:20px;
+    padding: 3px;
+    outline:2px solid #DDD;
+    border:#a1a1a1;
+    float:left;
+      -webkit-transition: margin 0.5s ease-out;
+      -moz-transition: margin 0.5s ease-out;
+      -o-transition: margin 0.5s ease-out;
+}
+
+.nav-container a {
+    color: black;
+}
+
+.inside a:hover {
+    cursor: pointer;
+    margin-top: 5px;
+}
