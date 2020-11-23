@@ -1,7 +1,7 @@
 <header class="header-wrap">
 
         <div class="selected">
-        <a href='/home'><img class="logo" src="/img/logo1.jpg" alt="logo"></a>
+        <a href='/'><img class="logo" src="/img/logo1.jpg" alt="logo"></a>
         </div>
 
         <input class="input-search-bar" type="search" name="query">
