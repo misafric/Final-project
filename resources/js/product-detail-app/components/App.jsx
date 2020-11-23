@@ -64,6 +64,10 @@ function App() {
         setDataSet({dataSet:data,loaded:true});
     };
 
+    const clearSuccessMsg = () => {
+        document.getElementById('success-message').style.visibility='hidden'
+    }
+
     const handleFilterChange = (event) => {
         setCurrentSelection((currentSelection) => {
             let valueArray = currentSelection.values;
@@ -71,6 +75,7 @@ function App() {
             return {...currentSelection,[event.target.name]:event.target.value*1,values: valueArray}
         });
         console.log(currentSelection.values[1]);
+        document.getElementById('success-message') && clearSuccessMsg(); 
         setReloadReady(() => {
             return true;
         })
@@ -96,9 +101,9 @@ function App() {
     }
 
     const handleQtyChange = (e) => {
+        const newValue = (e.target.value < 1) ? 1 : e.target.value
         setOrderQty(() => {
-                console.log(e.target.value);
-                return e.target.value;
+                return newValue;
             }
         )
         
@@ -115,8 +120,14 @@ function App() {
             {
                 loaded ? (
                     <div>
-                        <img src={'/img/' + dataSet.articles[currentSelectionId].images[0].url}
+                        {dataSet.articles[currentSelectionId].images[0] ? (
+                        <>
+                            <img src={'/img/' + dataSet.articles[currentSelectionId].images[0].url}
                             alt={dataSet.articles[currentSelectionId].images[0].url}/> <br/>
+                        </>) : (
+                        <h3>NO IMAGE IN DATABASE, WE'RE SORRY</h3>
+                        )
+                        }
 
                         TAGS: <br/> {dataSet.articles[currentSelectionId].tags.map ((t,i) => {
                             

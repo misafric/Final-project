@@ -21,6 +21,19 @@ class ArticleController extends Controller
 
         $initial_selection_array = explode('-',$init_selection);
 
+        // dd($initial_selection_array);
+
+        // foreach ($initial_selection_array as $i=>$initial_selection_item) {
+        //     $initial_selection_array[$i] = explode('-',$initial_selection_item);
+        // }
+
+        // foreach ($initial_selection_array as $initial_selection_item) {
+        //     $initial_selection[$initial_selection_item[0]] = $initial_selection_item[1];
+        // }
+
+        // dd($initial_selection_array);
+
+        
         $tag_category_ids = [];
         $tags_array_inside = [];
         foreach ($articles_without_keys as $article) {
@@ -32,31 +45,65 @@ class ArticleController extends Controller
         }
 
         
+        // dd($tags_array_inside);
+
         $tag_categories = TagCategory::
+        // with('tags')
         with(['tags' => function ($query) {
+            // $query->whereIn('id', [5,6,7,8,11]);
             $query->whereIn('id', $this->tags_array);
         }])
         ->whereIn('id',$tag_category_ids)
+        // $tag_categories = TagCategory::with('relevant_tags')->whereIn('id',$tag_category_ids)
+        // ->whereIn('tags.id',$tags_array)
         ->get();
+
+        // dd($tag_categories);
+
+        // $identifier_tags = TagCategory::with('tags')->whereIn('id',$tag_category_ids)->where('is_identifier',1)->get();
+
+        // dd($identifier_tags);
 
         $identifier_tags = [];
 
         $category_identifiers_ids = [];
 
+        // foreach ($tag_categories as $tag_category) {
+        //     if ($tag_category['is_identifier'] === 1) {
+        //             $identifier_tags[] = $tag_category;
+        //             foreach ($tag_category['tags'] as $tag) {
+        //                 $category_identifiers_ids[] = $tag['id'];
+        //                 $tag['preselected'] = in_array( $tag['id'], $initial_selection_array);
+        //                 $tag['relevant'] = in_array( $tag['id'], $tags_array);
+        //             }
+        //     }
+        // }
+
         foreach ($tag_categories as $tag_category) {
             if ($tag_category['is_identifier'] === 1) {
                     $identifier_tags[] = $tag_category;
                     foreach ($tag_category['tags'] as $i => $tag) {
+                        // if (in_array( $tag['id'], $this->tags_array)) {
                             $category_identifiers_ids[] = $tag['id'];
-                            $tag['preselected'] = in_array( $tag['id'], $initial_selection_array);                        
+                            $tag['preselected'] = in_array( $tag['id'], $initial_selection_array);
+                            // $tag['relevant'] = in_array( $tag['id'], $this->tags_array);
+                        // } else {
+                            // var_dump( gettype($tag_category['tags']));
+                            // unset($tag_category['tags'][$i]);
+                        // }
+                        
                     }
             }
         }
 
+        // $tag_ids = [];
         $articles = [];
         foreach ($articles_without_keys as $article) {
             $tag_key = [];
             foreach ($article['tags'] as $tag) {
+                
+                // $tag_ids = array_unique(array_merge($tag_ids,[$tag['id']]));
+
                 if(in_array( $tag['id'],$category_identifiers_ids )) {
                     $tag_key[] = $tag['id'];
                     $tag['is_identifier'] = 1;
@@ -68,9 +115,18 @@ class ArticleController extends Controller
             $articles[$article['tag_key']] = $article;  
         }
 
+        
+
+        // $tags = Tag::with('tag_category')->whereIn('id',$tag_ids)->get();
+
+        // dd($articles);
+
         return ['articles' => $articles,
+                // 'tags' => $tags,
                 'tag_categories' => $tag_categories,
                 'identifier_tags' => $identifier_tags
             ];
+
+        // return compact('articles','tags','tag_categories');
     }
 }
