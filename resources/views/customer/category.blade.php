@@ -47,7 +47,7 @@ function find_default_link ($product) {
 }
 ?>
 
-
+<div class="category-container">
 <div class="filters-container">
 
 <form action="{{ action('Product\ProductController@filter',[$category_id]) }}" method="get">
@@ -63,11 +63,11 @@ function find_default_link ($product) {
         </div>
     @endforeach
 
-    <input type="submit" value="Filter">
+    <input class="filter-button" type="submit" value="Filter">
 
 </form>
 
-<a href="{{ action('Product\ProductController@index',[$category_id]) }}"><button>Clear Filters</button></a>
+<a href="{{ action('Product\ProductController@index',[$category_id]) }}"><button class="clear-button">Clear filters</button></a>
 
 
 </div>
@@ -88,6 +88,7 @@ function find_default_link ($product) {
         
     </div>
 </article>
+</div>
 
 @endforeach
     

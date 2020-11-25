@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Ubuntu:wght@500&display=swap');
+
+.category-container {
+    display: flex;
+    font-family: 'Montserrat', sans-serif;
+}
+
+@media screen and (min-width: $small) {
+    .category-container{
+        display: flex;
+        margin-top: 2rem;
+        margin-left: 2rem;
+        font-family: 'Montserrat', sans-serif;
+    }
+}
+
+.filters-container {
+    border: solid 1px black;
+    padding-left: 1rem;
+    padding-bottom: 1rem;
+    padding-right: 1rem;
+}
+
+.product {
+    padding-left: 5rem;
+    padding-top: 1rem;
+}
+
+.filter-button {
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 1rem;
+    margin-bottom: 0.7rem;
+    background-color: rgba(59, 105, 59, 0.897);
+}
+
+.clear-button {
+    font-family: 'Montserrat', sans-serif;
+    background-color: rgba(59, 105, 59, 0.897);
+}
+
