@@ -23,15 +23,16 @@ class ProductSeeder extends Seeder
             'name',
             'description_short',
             'description_long',
-            'unit_price'
+            'unit_price',
+            'is_active'
         ];
 
         $values = [
-            ['Timberland M','Short Description Timberland M','Long Description Timberland M', 3400],
-            ['Timberland F','Short Description Timberland F','Long Description Timberland F', 3300],
-            ['KEEN F','Short Description KEEN F','Long Description Keen F', 2700],
-            ['Rejoice Bandana F','Short Description Rejoice Bandana F','Long Description Rejoice Bandana F', 500],
-            ['Thermos','Short Description Thermos','Long Description Thermos', 1000],
+            ['Timberland M','Short Description Timberland M','Long Description Timberland M', 3400, 1],
+            ['Timberland F','Short Description Timberland F','Long Description Timberland F', 3300, 1],
+            ['KEEN F','Short Description KEEN F','Long Description Keen F', 2700, 1],
+            ['Rejoice Bandana F','Short Description Rejoice Bandana F','Long Description Rejoice Bandana F', 500, 1],
+            ['Thermos','Short Description Thermos','Long Description Thermos', 1000, 1],
         ];
 
         $fields_string = implode(',', $fields);
