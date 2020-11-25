@@ -18,6 +18,7 @@ class Articles extends Migration
             $table->unsignedBigInteger('product_id');
             $table->integer('stock_qty');
             $table->date('next_restock');
+            $table->timestamps();
         });
     }
 

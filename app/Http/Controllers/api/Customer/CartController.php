@@ -64,6 +64,8 @@ class CartController extends Controller
                 'article_id' => $request['article_id'],
                 'order_qty' => $request['order_qty'],
                 'order_unit_price' => $request['order_unit_price'],
+                'next_restock' => $request['next_restock'],
+                'stock_qty' => $request['stock_qty'],
             ] 
         );
 
@@ -124,8 +126,22 @@ class CartController extends Controller
 
     public function empty(Request $request)
     {
+        $order_url = 'none';
+        if($request->session()->has('order_success_message')) {
+            $order_url = $request->session()->get('order_success_message');
+        }
+
         $request->session()->flush();
 
+        if ($order_url != 'none') {
+            return(route('customer.order.show',$order_url));
+        }
+
         return redirect(route('cart'));
+    }
+
+    public static function empty_static(Request $request)
+    {
+        $request->session()->flush();
     }
 }

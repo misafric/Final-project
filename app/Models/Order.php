@@ -26,7 +26,7 @@ class Order extends Model
 
     public function articles()
     {
-        return $this->belongsToMany(Article::class);
+        return $this->belongsToMany(Article::class)->withPivot('order_qty','order_unit_price');
     }
 
     public function order_status_logs()
