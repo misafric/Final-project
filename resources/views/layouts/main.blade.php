@@ -17,6 +17,8 @@
 
     @include('common/header')
 
+    @include('common/nav_header')
+
     @yield('content')
     
     @include('common/footer')
