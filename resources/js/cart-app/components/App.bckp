@@ -1,0 +1,74 @@
+import React, {useState,useEffect} from 'react';
+
+function App() {
+    const csrf_token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+    const [{dataSet,loaded},setDataSet] = useState(
+        {
+            dataSet:[],
+            loaded:false
+        }
+    );
+
+    const fetchData = async () => {
+        const response = await fetch(
+            `/api/cart/index`
+        );
+        const data = await response.json();
+        // console.log(data.cart_items)
+        response && data && data.cart_items && setDataSet({
+            dataSet:data.cart_items,
+            loaded:true
+        })
+    }
+
+    const handleQtyChange = (event) => {
+        const newValue = (event.target.value < 1) ? 1 : event.target.value 
+        let newDataSet = dataSet;
+        newDataSet[event.target.id].order_qty = newValue;
+        setDataSet({dataSet:newDataSet,loaded:true})        
+    }
+
+    useEffect(() => {
+        fetchData()
+    },[])
+
+    const consoleLogDataSet = () => {
+        console.log(dataSet)
+    }
+
+    return <>
+        {/* <button onClick={fetchData}>Check API</button> */}
+        {(!loaded) ? (<>Loading</>) :(
+            <div className='cart-items'>
+                {dataSet.map((item,i) => { return(
+                    <div className="cart-item" key={i}>
+                        Ordered article {i+1}: <br/>
+                        Product ID: {item.product_id} <br/>
+                        Product Name: {item.product_name + ' ' +item.identifiers}<br/>
+                        Article ID: {item.article_id} <br/>
+                        Unit Price: {item.order_unit_price} <br/>
+                        Order Qty: <input type="number" id={i} value={item.order_qty} min="1" onChange={handleQtyChange}/> <br/>
+                        {/* Order Qty: {item.order_qty} <br/> */}
+                        <form action="/api/cart/remove" method="post">
+                            <input type="hidden" name="_token" value={csrf_token} />
+                            <input type="hidden" name="cart_item_id" value={i} />
+                            <input type="submit" value="Remove from Cart" />
+                        </form>
+                        <br/>
+                    </div>
+                )})}
+            {(dataSet.length===0) ? (<>Your cart is empty. Go buy something... chop, chop!</>) :
+            (<form action="/api/cart/empty" method="post">
+                <input type="hidden" name="_token" value={csrf_token} />
+                <input type="submit" value="Empty Cart"></input>
+            </form>)
+            }
+            {/* <button onClick={consoleLogDataSet}>Gib info</button> */}
+            </div>
+        )}
+    </>
+}
+
+export default App;
+

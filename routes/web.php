@@ -13,9 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', 'Customer\HomeController@index');
 
 Route::view('/footerheader-test', 'layouts/main');
 
@@ -29,11 +31,12 @@ Route::view('/cart', 'customer.cart')->name('cart');
 Route::get('/api/product/{id}/articles/{init_selection?}','Api\Customer\ArticleController@product_articles');
 Route::post('/api/cart/add','Api\Customer\CartController@add');
 Route::post('/api/cart/remove','Api\Customer\CartController@remove');
+Route::post('/api/cart/edit','Api\Customer\CartController@edit');
 Route::post('/api/cart/empty','Api\Customer\CartController@empty');
-Route::get('/home', 'Customer\HomeController@index');
+Route::get('/api/cart/index','Api\Customer\CartController@index');
 
 Route::get('/category/{id}', 'Product\ProductController@index');
 
-Route::post('/add', 'AddController@add');
+Route::post('/cart/add', 'AddController@add');
 Route::post('/try', 'TryController@try');
 

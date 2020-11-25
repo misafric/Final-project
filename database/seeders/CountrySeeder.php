@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class ArticleSeeder extends Seeder
+class CountrySeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,34 +14,17 @@ class ArticleSeeder extends Seeder
      */
     public function run()
     {
-    
-        $table_name = 'articles';
+        $table_name = 'countries';
         
         DB::table($table_name)->truncate();
 
         $fields = [
-            'product_id',
-            'stock_qty',
-            'next_restock'
+            'iso_2','name_short'
         ];
 
         $values = [
-            [1, 3, '2020-12-20'],
-            [1, 2, '2020-12-20'],
-            [1, 4, '2020-12-20'],
-            [1, 1, '2020-12-20'],
-
-            [2, 6, '2020-12-20'],
-            [2, 2, '2020-12-20'],
-            [2, 3, '2020-12-20'],
-            [2, 3, '2020-12-20'],
-
-            [3, 6, '2020-12-20'],
-            [3, 1, '2020-12-20'],
-            [3, 5, '2020-12-20'],
-            [3, 2, '2020-12-20'],
-            [3, 2, '2020-12-20'],
-            [3, 1, '2020-12-20'],
+            ['CZ','Czechia'],
+            ['SK','Slovakia'],
         ];
 
         $fields_string = implode(',', $fields);
@@ -59,11 +42,20 @@ class ArticleSeeder extends Seeder
             $qm_array[] = '('.implode(',',array_fill(0,count($value_set),'?')).')';
         }
         
-
         $qm_string = implode(',',$qm_array);
 
         $query = 'insert into '.$table_name.' ('.$fields_string.') values '.$qm_string;
 
         DB::insert($query, $values_string);
+
+        // DB::insert("INSERT INTO `tag_categories` (`name`) VALUES (?,?,?)", ['Category','Color','Size']);
+
+
+        // DB::insert(
+        //     "INSERT INTO `tag_categories`
+        //     (`name`)
+        //     VALUES
+        //     ('Category','Color','Size')"
+        //     );
     }
 }

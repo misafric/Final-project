@@ -11,11 +11,35 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
-    public function index($id)
+
+    public function index($category_id)
     {
-        $products = DB::select('SELECT * FROM `tags` WHERE `tag_category_id` = ? ', [$id]);  
+        $products = Product::
+        whereHas('tags', function($query) use ($category_id) {
+            $query->where('tags.id', $category_id);
+        })
+        ->with('articles.images')
+        ->with('articles.tags')
+        ->get();
 
-        return view('product/index', compact('products'));
-
+        return view('customer.category',compact('products'));
     }
+
+    public function filter($category_id)
+    {
+        $tag_id = 5;
+        $products = Product::
+        whereHas('tags', function($query) use ($category_id) {
+            $query->where('tags.id', $category_id);
+        })
+        ->whereHas('articles.tags', function($query) use ($tag_id) {
+            $query->where('tags.id', $tag_id);
+        })
+        ->with('articles.images')
+        ->with('articles.tags')
+        ->get();
+
+        return $products;
+    }
+
 }

@@ -35,8 +35,10 @@ class TagSeeder extends Seeder
             [2,'Black','black',0,1,1],
             [2,'Brown','brown',0,1,1],
             [3,40,'40',0,1,1],
+            [3,41,'41',0,1,1],
             [3,42,'42',0,1,1],
             [4,'-30%','-30%',0,0,1],
+            //10
             [5,'Top Seller','top-seller',0,0,1],
             [5,'Top Reviews','top-reviews',0,0,1],
             [5,'Last Chance','last-chance',0,0,1],

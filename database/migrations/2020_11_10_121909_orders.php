@@ -26,6 +26,7 @@ class Orders extends Migration
             $table->unsignedBigInteger('user_id');
             $table->datetime('order_date_time');
             $table->string('order_hash');
+            $table->timestamps();
         });
     }
 
