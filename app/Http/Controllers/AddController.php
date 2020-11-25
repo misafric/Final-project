@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Api\Customer\CartController;
 use App\Models\Order;
 use App\Models\Article;
 use Illuminate\Http\Request;
@@ -16,7 +17,9 @@ class AddController extends Controller
     public function add(Request $request)
     {      
 
-        $order_hash = 1234;
+        $order_hash = 'notAnActualHashYet';
+
+        // dd($request->input('article_id')[0]);
 
         // Validator::make($request->all(), [
         //     'quantity' => 'required|numeric|min:1'
@@ -41,19 +44,39 @@ class AddController extends Controller
 
         $order->save(); // asign an id to an order
 
+        $actual_hash = hash('ripemd160', $order->id);
+
+        $order->order_hash = $actual_hash;
+
+        $order->update();
+
+        foreach ($request->input('article_id') as $i => $article) {
+            $article_id = $article;
+            $order_qty = $request->input('order_qty')[$i];
+            $order_unit_price = $request->input('order_unit_price')[$i];
+            $order->articles()->attach($article_id, compact ('order_qty', 'order_unit_price' ));
+            $article_record = Article::findOrFail($article);
+            $article_old_stock = $article_record->stock_qty;
+            $article_new_stock = $article_old_stock - $order_qty;
+            $article_record->stock_qty = $article_new_stock;
+            $article_record->update();
+        }
+
         
-        $article_id = $request->input('article_id');
-        $order_qty = $request->input('order_qty');
-        $order_unit_price = $request->input('order_unit_price');
 
-        $order->articles()->attach($article_id, compact ('order_qty', 'order_unit_price' ));
+        $order_url = route('customer.order.show',$actual_hash);
 
-        session()->flash('order_success_message', 'Article '. $article_id .' was added to the cart');
+        // dd($order_url);
 
-        return redirect('/cart');
+        CartController::empty_static($request);
 
+        session()->flash('order_success_message', 'Thank you for shopping with us, you can track your order status at '.$order_url);
+        session()->flash('order_created',true);
+        session()->flash('order_url', $order_url);
 
+        
 
+        return redirect(route('customer.order.show',$actual_hash));
 
     }
 }

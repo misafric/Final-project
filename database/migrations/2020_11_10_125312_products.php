@@ -19,6 +19,7 @@ class Products extends Migration
             $table->text('description_short')->nullable();
             $table->text('description_long')->nullable();
             $table->unsignedInteger('unit_price');
+            $table->boolean('is_active');
         });
     }
 
