@@ -74,6 +74,9 @@ class ArticleTagSeeder extends Seeder
             [14,6],
             [14,9],
             [14,12],
+
+            [15,5],
+            [16,21],
         ];
 
         $fields_string = implode(',', $fields);

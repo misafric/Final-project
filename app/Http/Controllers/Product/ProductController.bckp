@@ -28,6 +28,8 @@ class ProductController extends Controller
         ->limit(20)
         ->get();
 
+        // return $products;
+
         foreach ($products as $product) {
             foreach ($product['tags'] as $product_tag) {
                 $this->relevant_tag_ids = array_unique(array_merge($this->relevant_tag_ids,[$product_tag['id']]));
@@ -44,102 +46,106 @@ class ProductController extends Controller
             ;
         }
 
+        // dd($this->relevant_tag_ids);
+
         $filters = TagCategory::
         with(['tags' => function ($query) {
             $query->whereIn('id', $this->relevant_tag_ids)
             ;
         }])
+        // ->whereIn('tags.id', $this->relevant_tag_ids)
         ->where('is_filterable',1)
         ->whereHas('tags', function($query) {
             $query->whereIn('tags.id', $this->relevant_tag_ids);
         })
-        ->orderBy('is_product_level','desc')
         ->get();
 
-        // return $products;
+        // return $filters;
 
         return view('customer.category',compact('products','filters','category_id'));
     }
 
     public function filter($category_id, Request $request)
     {
+        // $product_tag_ids = [[1,[2]]];
+        // $article_tag_ids = [[2,[5,6]],[3,[7,8,9]]];
+        // // $article_filter_group_1 = $article_tag_ids[0];
+        // // $article_filter_tag_category_1 = $article_filter_group_1[0];
+        // // $article_filter_tags_1 = $article_filter_group_1[1];
+        // // $article_filter_group_2 = $article_tag_ids[1];
+        // // $article_filter_tag_category_2 = $article_filter_group_2[0];
+        // // $article_filter_tags_2 = $article_filter_group_2[1];
+        // $products = Product::
+        // whereHas('tags', function($query) use ($category_id) {
+        //     $query->where('tags.id', $category_id);
+        // })
+        // ->whereHas('tags', function($query) use ($product_tag_ids) {
+        //     $query->whereIn('tags.id', $product_tag_ids[0][1]);
+        // })
+        // ->whereHas('articles.tags', function($query) use ($article_tag_ids) {
+        //     $query->whereIn('tags.id', $article_tag_ids[0][1]);
+        // })
+        // ->whereHas('articles.tags', function($query) use ($article_tag_ids) {
+        //     $query->whereIn('tags.id', $article_tag_ids[1][1]);
+        // })
+        // ->with('articles.images')
+        // ->with('articles.tags')
+        // ->get();
+
+        // foreach ($request->input() as $request_element) {
+        //     var_dump($request_element);
+        // }
+
         $active_filters = array_keys($request->all());
+
+        // dd($active_filters);
 
         $product_tag_ids_array = [];
         $article_tag_ids_array = [];
-        $tag_ids_array = [];
 
         foreach ($active_filters as $active_filter) {
             if(substr($active_filter,0,strpos ( $active_filter , '-')) == 0) {
+                // dd($active_filter);
+                // dd(substr($active_filter,strrpos ( $active_filter , '-')+1, strlen($active_filter))); // tag_id
+                // dd(substr($active_filter,strpos ( $active_filter , '-')+1,strrpos ( $active_filter , '-') - strpos ( $active_filter , '-')-1)); // category_id
+                // dd(substr($active_filter,0,strpos ( $active_filter , '-'))); // is_product_level
+                // dd(strpos ( $active_filter , '-').'-'.strrpos ( $active_filter , '-'));
                 $tag_category_id = substr($active_filter,strpos ( $active_filter , '-')+1,strrpos ( $active_filter , '-') - strpos ( $active_filter , '-')-1);
+                // echo($category_id);
                 if(!in_array($tag_category_id,array_keys($article_tag_ids_array))) {
                     $article_tag_ids_array[$tag_category_id] = [];
                 }
+                // var_dump( $article_tag_ids_array);
                 $tag_value = substr($active_filter,strrpos ( $active_filter , '-')+1, strlen($active_filter));
+                // var_dump($tag_value);
                 array_push($article_tag_ids_array[$tag_category_id],$tag_value);
-                // array_push($tag_ids,$tag_value);
-                $tag_ids_array = array_unique(array_merge($tag_ids_array,[$tag_value]));
-
+                // var_dump( $article_tag_ids_array);
             } else {
                 $tag_category_id = substr($active_filter,strpos ( $active_filter , '-')+1,strrpos ( $active_filter , '-') - strpos ( $active_filter , '-')-1);
+                // echo($category_id);
                 if(!in_array($tag_category_id,array_keys($product_tag_ids_array))) {
                     $product_tag_ids_array[$tag_category_id] = [];
                 }
+                // var_dump( $article_tag_ids_array);
                 $tag_value = substr($active_filter,strrpos ( $active_filter , '-')+1, strlen($active_filter));
+                // var_dump($tag_value);
                 array_push($product_tag_ids_array[$tag_category_id],$tag_value);
             }
         }
 
-        // $tag_ids = [8,9];
+        // var_dump($active_filters);
+        // dd($category_id);
 
-        // dd($tag_ids);
+        // $product_tag_ids_array = [[1,[2]]];
+        // dd($product_tag_ids_array);
+        // $article_tag_ids_array = [[2,[5,6]],[3,[9]]];
+        // dd($article_tag_ids_array);
         $query = Product::
         whereHas('tags', function($query) use ($category_id) {
             $query->where('tags.id', $category_id);
         })
-
-        
-        // Slavo
-        // ->with(['articles' => function($query) use ($tag_ids){
-        //     $query->whereHas('tags', function($query2) use ($tag_ids) { 
-        //         $query2->whereIn('tags.id', $tag_ids);
-        //     });
-        // }])
-        // Slavo end
-
-        // ->with(['tags' => function ($query) {
-        //     $query->whereHas('tag_category', function ($query) {
-        //         $query->where('is_identifier', 1);
-        //     })
-        //     ;
-        // }])
-
-        // WORKS
-        // ->with(['articles' => function ($query) use ($tag_ids){
-        //     $query->whereHas('tags', function ($query) use ($tag_ids) {
-        //         $query->whereIn('tags.id', $tag_ids);
-        //     })
-        //     ;
-        // }])
-
-        // ->with(['articles.images' => function ($query) {
-        //     $query->whereHas('articles.tags', function ($query) {
-        //         $query->where('tags.id', 9);
-        //     })
-        //     ;
-        // }])
-
-        // ->with(['articles.tags' => function ($query) {
-        //     $query->whereHas('articles.tags', function ($query) {
-        //         $query->where('tags.id', 9);
-        //     })
-        //     ;
-        // }])
-
         ->with('articles.images')
-        ->with('articles.tags.tag_category')
-        ->offset(0)
-        ->limit(20);
+        ->with('articles.tags');
 
         foreach ($product_tag_ids_array as $tag_ids) {
             $query->whereHas('tags', function($query) use ($tag_ids) {
@@ -153,55 +159,9 @@ class ProductController extends Controller
             });
         }
 
-        // Product index method from here;
-
         $products = $query->get();
 
-        foreach ($products as $product) {
-            foreach ($product['tags'] as $product_tag) {
-                $this->relevant_tag_ids = array_unique(array_merge($this->relevant_tag_ids,[$product_tag['id']]));
-            }
-            ;
-        }
-
-        foreach ($products as $product) {
-            foreach ($product['articles'] as $article) {
-                foreach ($article['tags'] as $article_tag) {
-                    $this->relevant_tag_ids = array_unique(array_merge($this->relevant_tag_ids,[$article_tag['id']]));
-                }                
-            }
-            ;
-        }
-
-        // dd($tag_ids_array);
-
-        foreach ($products as $product) {
-            foreach ($product['articles'] as $article) {
-                $article['matches'] = 0;
-                $article['selected'] = false;
-                foreach ($article['tags'] as $tag) {
-                    $article['matches'] = in_array($tag['id'], $tag_ids_array) ? $article['matches'] + 1 : $article['matches'];
-                }
-                $article['selected'] = $article['matches'] === count($article_tag_ids_array);
-                if($article['selected']) {break;}
-            }
-        }
-
-        $filters = TagCategory::
-        with(['tags' => function ($query) {
-            $query->whereIn('id', $this->relevant_tag_ids)
-            ;
-        }])
-        ->where('is_filterable',1)
-        ->whereHas('tags', function($query) {
-            $query->whereIn('tags.id', $this->relevant_tag_ids);
-        })
-        ->orderBy('is_product_level','desc')
-        ->get();
-
-        // return $products;
-
-        return view('customer.category',compact('products','filters','category_id','active_filters'));
+        return $products;
     }
 
 }

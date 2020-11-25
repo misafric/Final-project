@@ -43,26 +43,31 @@ class CartController extends Controller
         ->with('images')
         ->findOrFail($request['article_id']);
 
-        // dd($article);
+        
 
         $identifiers_array = [];
 
         foreach ($article['tags'] as $tag) {
             $identifiers_array[] = $tag['name']; 
         }
+        
 
         $identifiers = implode(', ',$identifiers_array);
+
+        
 
         $request->session()->push('cart_items', [ 
                 'product_id' => $request['product_id'],
                 'product_name' => $article['product']['name'],
                 'identifiers' => $identifiers,
-                'image_url' => $article['images'][0]['url'],
+                'image_url' => (count($article['images'])>0) ? $article['images'][0]['url'] : 'no-image',
                 'article_id' => $request['article_id'],
                 'order_qty' => $request['order_qty'],
                 'order_unit_price' => $request['order_unit_price'],
             ] 
         );
+
+        // return $article;
 
         // $current_session = $request->session()->all();
 

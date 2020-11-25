@@ -22,27 +22,54 @@ class TagSeeder extends Seeder
             'tag_category_id',
             'name',
             'slug',
-            'is_product_tag',
-            'is_identifier_tag',
-            'is_filterable_tag'
+            // 'is_product_tag',
+            // 'is_identifier_tag',
+            // 'is_filterable_tag'
         ];
         
         $values = [
-            [1,'Men','men',1,0,0],
-            [1,'Women','women',1,0,0],
-            [1,'Children','children',1,0,0],
-            [1,'Equipment','equipment',1,0,0],
-            [2,'Black','black',0,1,1],
-            [2,'Brown','brown',0,1,1],
-            [3,40,'40',0,1,1],
-            [3,41,'41',0,1,1],
-            [3,42,'42',0,1,1],
-            [4,'-30%','-30%',0,0,1],
+            [1,'Men','men'],
+            [1,'Women','women'],
+            [1,'Children','children'],
+            [1,'Equipment','equipment'],
+            [2,'Black','black'],
+            [2,'Brown','brown'],
+            [3,40,'40'],
+            [3,41,'41'],
+            [3,42,'42'],
+            [4,'-30%','-30%'],
             //10
-            [5,'Top Seller','top-seller',0,0,1],
-            [5,'Top Reviews','top-reviews',0,0,1],
-            [5,'Last Chance','last-chance',0,0,1],
+            [5,'Top Seller','top-seller'],
+            [5,'Top Reviews','top-reviews'],
+            [5,'Last Chance','last-chance'],
+            [7,'Clothing','clothing'],
+            [7,'Footwear','footwear'],
+            [8,'Timberland','timberland'],
+            [8,'KEEN','keen'],
+            [8,'Rejoice','rejoice'],
+            [9,'M','m'],
+            [9,'L','l'],
+            //20
+            [2,'Red','red'],
+            [8,'Thermos','thermos'],
         ];
+
+        // $values = [
+        //     [1,'Men','men',1,0,0],
+        //     [1,'Women','women',1,0,0],
+        //     [1,'Children','children',1,0,0],
+        //     [1,'Equipment','equipment',1,0,0],
+        //     [2,'Black','black',0,1,1],
+        //     [2,'Brown','brown',0,1,1],
+        //     [3,40,'40',0,1,1],
+        //     [3,41,'41',0,1,1],
+        //     [3,42,'42',0,1,1],
+        //     [4,'-30%','-30%',0,0,1],
+        //     //10
+        //     [5,'Top Seller','top-seller',0,0,1],
+        //     [5,'Top Reviews','top-reviews',0,0,1],
+        //     [5,'Last Chance','last-chance',0,0,1],
+        // ];
 
         $fields_string = implode(',', $fields);
 

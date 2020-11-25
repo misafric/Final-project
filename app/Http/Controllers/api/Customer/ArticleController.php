@@ -64,7 +64,7 @@ class ArticleController extends Controller
                     $tag['is_identifier'] = 0;
                 }
             }
-            $article['tag_key']=implode('-',$tag_key);
+            $article['tag_key']=(implode('-',$tag_key) == '') ? "0" : implode('-',$tag_key);
             $articles[$article['tag_key']] = $article;  
         }
 

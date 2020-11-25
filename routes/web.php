@@ -35,5 +35,9 @@ Route::post('/api/cart/edit','Api\Customer\CartController@edit');
 Route::post('/api/cart/empty','Api\Customer\CartController@empty');
 Route::get('/api/cart/index','Api\Customer\CartController@index');
 
-Route::get('/category/{id}', 'Product\ProductController@index');
+Route::get('/category/{id}', 'Product\ProductController@index')->name('customer.category.index');
+Route::get('/category/{id}/filter', 'Product\ProductController@filter')->name('customer.category.filter');
+
+Route::post('/cart/add', 'AddController@add');
+Route::post('/try', 'TryController@try');
 

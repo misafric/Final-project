@@ -26,8 +26,19 @@ class ProductTagSeeder extends Seeder
 
         $values = [
             [1,1],
+            [1,15],
+            [1,16],
             [2,2],
-            [3,2]
+            [2,15],
+            [2,16],
+            [3,2],
+            [3,15],
+            [3,17],
+            [4,2],
+            [4,14],
+            [4,18],
+            [5,4],
+            [5,22],
         ];
 
         $fields_string = implode(',', $fields);

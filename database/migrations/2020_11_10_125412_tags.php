@@ -18,9 +18,9 @@ class Tags extends Migration
             $table->unsignedBigInteger('tag_category_id');
             $table->string('name');
             $table->string('slug');
-            $table->boolean('is_product_tag');
-            $table->boolean('is_identifier_tag');
-            $table->boolean('is_filterable_tag');
+            // $table->boolean('is_product_tag');
+            // $table->boolean('is_identifier_tag');
+            // $table->boolean('is_filterable_tag');
         });
     }
 

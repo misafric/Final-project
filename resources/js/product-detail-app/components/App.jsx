@@ -89,6 +89,7 @@ function App() {
         if (loaded)
         {setCurrentSelectionId(() => {
             return (
+                (currentSelectionId == 0) ? (0) : 
                 currentSelection.values && currentSelection.values.join('-')
             )
             })
@@ -122,7 +123,7 @@ function App() {
                     <div>
                         {dataSet.articles[currentSelectionId].images[0] ? (
                         <>
-                            <img src={'/img/' + dataSet.articles[currentSelectionId].images[0].url}
+                            <img src={'/img/goods/' + dataSet.articles[currentSelectionId].images[0].url}
                             alt={dataSet.articles[currentSelectionId].images[0].url}/> <br/>
                         </>) : (
                         <h3>NO IMAGE IN DATABASE, WE'RE SORRY</h3>
@@ -131,7 +132,7 @@ function App() {
 
                         TAGS: <br/> {dataSet.articles[currentSelectionId].tags.map ((t,i) => {
                             
-                            return (t.is_identifier == 0) ? (<><span key={i}>{t.name}</span><br/></>) : (<></>)
+                            return (t.is_visible == 0) ? (<><span key={i}>{t.name}</span><br/></>) : (<></>)
                         })}
 
                         {availableFilters.map((c,i) =>

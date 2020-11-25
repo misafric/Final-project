@@ -17,8 +17,10 @@ class TagCategories extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug');
+            $table->boolean('is_product_level');
             $table->boolean('is_identifier');
             $table->boolean('is_filterable');
+            $table->boolean('is_visible');
         });
     }
 
