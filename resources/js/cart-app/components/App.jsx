@@ -68,7 +68,7 @@ function App() {
                         <br/>
                     </div>
                 )})}
-            {(dataSet.length===0) ? (<>Your cart is empty. Go buy something... chop, chop!</>) :
+            {(dataSet.length===0) ? (<></>) :
             (
             <>  
                 <h3>Total Amount: {totalAmount}CZK</h3>

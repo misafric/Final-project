@@ -4,7 +4,6 @@
 
 <div id="cart-app"></div>
 
-<hr>
 
 <section class='cart-content'>
 </section>

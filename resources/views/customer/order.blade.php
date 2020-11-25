@@ -61,7 +61,7 @@
         <input type="number" name="order_unit_price"/>
     </p>
     
-    <input type="submit" name="">
+    <input type="submit" name="" value="Add to cart">
 
     @if (Session::has('order_success_message'))
 
