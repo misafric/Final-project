@@ -6,26 +6,30 @@ html {
     background-color: rgba(11, 65, 11, 0.562);
     min-width: 2rem;
     min-height: 35rem;
-//    width: 500px;
-//    height: 500px;
-//    text-align: center;
+    //    width: 500px;
+    //    height: 500px;
+    //    text-align: center;
 }
 
 .img-1 {
-   background: url('https://cdn.pixabay.com/photo/2016/03/09/09/59/men-1245982_960_720.jpg') center/cover no-repeat fixed;
+    background: url("https://cdn.pixabay.com/photo/2016/03/09/09/59/men-1245982_960_720.jpg")
+        center/cover no-repeat fixed;
 }
 
 .img-2 {
-   background: url('https://cdn.pixabay.com/photo/2016/10/22/18/36/climbing-1761386_960_720.jpg') center/cover no-repeat fixed;
+    background: url("https://cdn.pixabay.com/photo/2016/10/22/18/36/climbing-1761386_960_720.jpg")
+        center/cover no-repeat fixed;
 }
 
 .img-3 {
-    background: url('https://cdn.pixabay.com/photo/2019/09/04/14/24/hut-4451771_960_720.jpg') center/cover no-repeat fixed;
- }
+    background: url("https://cdn.pixabay.com/photo/2019/09/04/14/24/hut-4451771_960_720.jpg")
+        center/cover no-repeat fixed;
+}
 
 .img-4 {
-    background: url('https://cdn.pixabay.com/photo/2015/09/09/17/57/ski-932188_960_720.jpg') center/cover no-repeat fixed;
- }
+    background: url("https://cdn.pixabay.com/photo/2015/09/09/17/57/ski-932188_960_720.jpg")
+        center/cover no-repeat fixed;
+}
 
 a {
     text-decoration: none;
@@ -46,12 +50,12 @@ a {
     text-align: justify;
     margin: 20px;
     padding: 3px;
-    outline: 2.3px solid #DDD;
-    border:#a1a1a1;
-    float:left;
-      -webkit-transition: margin 0.5s ease-out;
-      -moz-transition: margin 0.5s ease-out;
-      -o-transition: margin 0.5s ease-out;
+    outline: 2.3px solid #ddd;
+    border: #a1a1a1;
+    float: left;
+    -webkit-transition: margin 0.5s ease-out;
+    -moz-transition: margin 0.5s ease-out;
+    -o-transition: margin 0.5s ease-out;
 }
 
 .nav-container a {
