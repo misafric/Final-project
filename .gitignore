@@ -17,3 +17,4 @@ npm-debug.log
 yarn-error.log
 /app/Http/Controllers/TryController.php
 /resources/views/customer/try.blade.php
+phploy.ini 

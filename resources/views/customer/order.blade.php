@@ -1,70 +1,56 @@
 <form method="post" action="{{ action('AddController@add') }}" id="order_form">
 
     @csrf
+    <div class="container">
     <p>
-        <label for="name">Name:</label>
+        <label for="name">Name:</label><br>
         <input id="name" type="text" name="name" required/>
     </p>
 
     <p>
-        <label for="phone">Phone:</label>
+        <label for="phone">Phone:</label><br>
         <input id="phone" type="tel" name="phone"  required/>
     </p>
 
     <p>
-        <label for="email">Email:</label>
+        <label for="email">Email:</label><br>
         <input id="email" type="text" name="email" required/>
     </p>
 
     <p>
-        <label for="zip">Zip:</label>
+        <label for="zip">Zip:</label><br>
         <input id="zip" type="text" name="zip" required/>
     </p>
 
     <p>
-        <label for="street">Street:</label>
+        <label for="street">Street:</label><br>
         <input id="street" type="text" name="street" required/>
     </p>
 
     <p>
-        <label for="city">City:</label>
+        <label for="city">City:</label><br>
         <input id="city" type="text" name="city" required/>
     </p>
-    {{-- <p>
-        <label for="user">User:</label>
-        
-    </p> --}}
-    <p>
-        Country:
+    </div>
+
+    <p class="country-input-wrap">
+        Country:<br><br>
         <label for="country_id">Czechia:</label>
         <input id="1" type="radio" name="country_id" value="1" required/>
         <label for="country_id">Slovakia:</label>
         <input id="2" type="radio" name="country_id" value="2" required/>
     </p>
 
-        <p>
-        <label for="note">Note:</label>
+        <p class="note-input-wrap">
+        <label for="note">Note:</label><br>
         {{-- <input id="note" type="text" name="note"/> --}}
-        <textarea name="note" cols="60" rows="7"></textarea>
+        <textarea class="textarea" name="note" cols="60" rows="7"></textarea>
     </p>
 
     <input id="user_id" type="hidden" name="user" value="1" required/>
-    {{-- <p>
-        <label>Article id:</label>
-        <input type="number" name="article_id" min="1"/>
-    </p>
 
-    <p>
-        <label>Order quantity:</label>
-        <input type="number" name="order_qty" min="1"/>
-    </p>
-
-    <p>
-        <label>Order unit price:</label>
-        <input type="number" name="order_unit_price"/>
-    </p> --}}
     
-    <input type="submit" name="">
+    <input class="button" type="submit" name="" value="Add to cart">
 
     @if (Session::has('order_success_message'))
 
