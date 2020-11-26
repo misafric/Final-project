@@ -15,7 +15,7 @@ class ArticleController extends Controller
 
     public function product_articles($id,$init_selection = '2-3_3-5')
     {
-        $articles_without_keys = Article::with('tags')->with('images')->where('product_id',$id)->get();
+        $articles_without_keys = Article::with('tags.tag_category')->with('images')->where('product_id',$id)->get();
 
         
 

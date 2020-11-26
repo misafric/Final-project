@@ -11,15 +11,13 @@ use App\Models\Tag;
 use App\Models\TagCategory;
 
 
-class HomeController extends Controller
+class CartController extends Controller
 {
-    public function index()
+    public function show()
     {
-        $tags = DB::select('SELECT * FROM `tags` WHERE `tag_category_id`=1');
-
         $categories = CategoryController::categories();
 
-        return view('customer/home', compact('tags', 'categories'));
+        return view('customer.cart', compact('categories'));
     }
 
 }

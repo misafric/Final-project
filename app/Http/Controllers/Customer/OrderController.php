@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Category\CategoryController;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Article;
@@ -42,7 +43,9 @@ class OrderController extends Controller
         //         'Thank you for shopping with us, you can track your order status at '.$request->session()->get('order_url'));
         // }
 
-        return (view('customer.order-view',compact('order')));
+        $categories = CategoryController::categories();
+
+        return (view('customer.order-view',compact('order','categories')));
         // dd($order->articles);
     }
 

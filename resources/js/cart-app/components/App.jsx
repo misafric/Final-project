@@ -17,7 +17,7 @@ function App() {
 
     const [deliveryDate,setDeliveryDate] = useState(0);
 
-    const [articleDDs, setArticleDDs] = useState([]);
+    // const [articleDDs, setArticleDDs] = useState([]);
 
     const fetchData = async () => {
         const response = await fetch(
@@ -96,17 +96,17 @@ function App() {
                         <br/>
                     </div>
                 )})}
-            {(dataSet.length===0) ? (<></>) :
+            {(dataSet.length===0) ? (<><h3>Your cart is currently empty.</h3></>) :
             (
             <>  
                 <h3>Total Amount: {totalAmount}CZK</h3>
                 <h4>Delivery Date: {deliveryDate}</h4>
                 <br/>
                 
-                {articleDDs.map((dd) => {
+                {/* {articleDDs.map((dd) => {
                     <><h6>{dd}</h6><br/></>
                 })
-                }
+                } */}
 
                 <form action="/api/cart/empty" method="post">
                     <input type="hidden" name="_token" value={csrf_token} />

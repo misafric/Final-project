@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Category\CategoryController;
+use App\Http\Controllers\Customer\HomeController;
 use App\Models\Tag;
 use App\Models\TagCategory;
 use App\Models\Product;
@@ -56,9 +58,11 @@ class ProductController extends Controller
         ->orderBy('is_product_level','desc')
         ->get();
 
+        $categories = CategoryController::categories();
+
         // return $products;
 
-        return view('customer.category',compact('products','filters','category_id'));
+        return view('customer.category',compact('products','filters','category_id','categories'));
     }
 
     public function filter($category_id, Request $request)
@@ -201,7 +205,9 @@ class ProductController extends Controller
 
         // return $products;
 
-        return view('customer.category',compact('products','filters','category_id','active_filters'));
+        $categories = CategoryController::categories();
+
+        return view('customer.category',compact('products','filters','category_id','active_filters','categories'));
     }
 
 }

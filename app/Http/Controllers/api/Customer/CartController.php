@@ -131,7 +131,7 @@ class CartController extends Controller
             $order_url = $request->session()->get('order_success_message');
         }
 
-        $request->session()->flush();
+        $request->session()->forget('cart_items');
 
         if ($order_url != 'none') {
             return(route('customer.order.show',$order_url));
@@ -142,6 +142,6 @@ class CartController extends Controller
 
     public static function empty_static(Request $request)
     {
-        $request->session()->flush();
+        $request->session()->forget('cart_items');
     }
 }

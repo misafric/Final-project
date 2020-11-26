@@ -27,6 +27,7 @@ Route::get('/prepare_product/{id?}', 'Customer\ProductController@prepare')->name
 Route::get('/api', 'ApiController@index');
 
 Route::view('/cart', 'customer.cart')->name('cart');
+Route::get('/cart', 'Customer\CartController@show')->name('cart');
 
 Route::get('/api/product/{id}/articles/{init_selection?}','Api\Customer\ArticleController@product_articles');
 Route::post('/api/cart/add','Api\Customer\CartController@add');

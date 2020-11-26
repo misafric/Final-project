@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Customer;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Category\CategoryController;
 use App\Models\Product;
 use App\Models\Article;
 use App\Models\Tag;
@@ -14,7 +15,7 @@ class ProductController extends Controller
 
     public function show($id,$init = 0)
     {
-        $product = Product::with('tags')->find($id);
+        $product = Product::with('tags.tag_category')->find($id);
 
         $articles = Article::where('product_id',$id)->get();
 
@@ -26,6 +27,8 @@ class ProductController extends Controller
             $tag_categories_names[$tag_category['id']] = $tag_category['name'];
         }
 
-        return view('customer/product-detail',compact('product','articles'));
+        $categories = CategoryController::categories();
+
+        return view('customer/product-detail',compact('product','articles','categories'));
     }
 }
