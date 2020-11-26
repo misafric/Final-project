@@ -22,6 +22,8 @@ function App() {
 
     const [orderQty, setOrderQty] = useState(1);
 
+    const [currentImg, setCurrentImg] = useState(0);
+
     const createCurrentSelection = (data) => {
         let result = {values:[]};
         data.forEach((c) => {
@@ -77,7 +79,8 @@ function App() {
             return {...currentSelection,[event.target.name]:event.target.value*1,values: valueArray}
         });
         console.log(currentSelection.values[1]);
-        document.getElementById('success-message') && clearSuccessMsg(); 
+        document.getElementById('success-message') && clearSuccessMsg();
+        handleImgChange(); 
         setReloadReady(() => {
             return true;
         })
@@ -112,6 +115,15 @@ function App() {
         
     }
 
+    const handleImgChange = () => {
+        const newImg = (currentImg < dataSet.articles[currentSelectionId].imgs_count-1) ? currentImg + 1 : 0
+        console.log(newImg);
+        setCurrentImg(() => {
+                return newImg;
+            }
+        )    
+    }
+
    useEffect(() => {
         if(reloadReady) {
             history.pushState({},'',currentSelectionId)
@@ -125,8 +137,10 @@ function App() {
                     <div>
                         {dataSet.articles[currentSelectionId].images[0] ? (
                         <>
-                            <img src={'/img/goods/' + dataSet.articles[currentSelectionId].images[0].url}
-                            alt={dataSet.articles[currentSelectionId].images[0].url}/> <br/>
+                            <img src={'/img/goods/' + dataSet.articles[currentSelectionId].images[currentImg].url}
+                                alt={dataSet.articles[currentSelectionId].images[0].url}
+                                onClick={handleImgChange}
+                                style={{cursor: 'pointer'}}/> <br/>
                         </>) : (
                         <h3>NO IMAGE IN DATABASE, WE'RE SORRY</h3>
                         )

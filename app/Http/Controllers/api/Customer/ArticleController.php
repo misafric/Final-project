@@ -55,6 +55,7 @@ class ArticleController extends Controller
 
         $articles = [];
         foreach ($articles_without_keys as $article) {
+            $article['imgs_count'] = count($article->images);
             $tag_key = [];
             foreach ($article['tags'] as $tag) {
                 if(in_array( $tag['id'],$category_identifiers_ids )) {
