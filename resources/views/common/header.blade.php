@@ -9,14 +9,14 @@
 
                 <div class="header-icons-wrap">
                         
-                        <div>
+                        {{-- <div>
                         <img class="icons-right" src="/img/menu_icon.jpg" alt="menu">
-                        </div>
+                        </div> --}}
                         
                         
                         <div class="header-right-icons-wrap">
-                                <img class="icons-right" src="/img/person_icon.png" alt="person">
-                                <img class="icons-right" src="/img/magnifying_glass_icon.jpg" alt="magnifying_glass">
+                                {{-- <img class="icons-right" src="/img/person_icon.png" alt="person">
+                                <img class="icons-right" src="/img/magnifying_glass_icon.jpg" alt="magnifying_glass"> --}}
                                 <a href="{{route('cart')}}"><img class="icons-right" src="/img/transparent_cart.png" alt="cart"></a>
                         </div>
 
