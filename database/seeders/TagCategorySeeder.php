@@ -26,7 +26,7 @@ class TagCategorySeeder extends Seeder
             ['Category','category',1,0,0,0],
             ['Color','color',0,1,1,0],
             ['Shoe Size','shoe-size',0,1,1,0],
-            ['Sale','sale',0,0,0,1],
+            ['Sale','sale',0,0,0,0],
             ['Miscellaneous','miscellaneous',0,0,0,1],
             ['Miscellaneous hidden','miscellaneous-hidden',0,0,0,0],
             ['Subcategory','subcategory',1,0,1,0],

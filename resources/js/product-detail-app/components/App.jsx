@@ -45,6 +45,8 @@ function App() {
         const data = await response.json();
 
         console.log(data);
+
+        
                 
         setAvailableFilters(
             data.identifier_tags.map((c,i) => {
@@ -130,9 +132,11 @@ function App() {
                         )
                         }
 
-                        TAGS: <br/> {dataSet.articles[currentSelectionId].tags.map ((t,i) => {
+                        <br/> {dataSet.articles[currentSelectionId].tags.map ((t,i) => {
                             
-                            return (t.is_visible == 0) ? (<><span key={i}>{t.name}</span><br/></>) : (<></>)
+                            return (t.tag_category.is_visible == 1) ? (
+                            <><span key={i}>{t.name}</span><br/></>
+                            ) : (<></>)
                         })}
 
                         {availableFilters.map((c,i) =>

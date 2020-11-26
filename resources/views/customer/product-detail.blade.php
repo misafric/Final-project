@@ -18,6 +18,12 @@
     <h3>{{$product["unit_price"]}}CZK</h3>
     <p>{{$product["description_long"]}}</p>
     
+    @foreach ($product->tags as $product_tag)
+        @if ($product_tag->tag_category->is_visible == 1)
+            {{$product_tag->name}}
+        @endif
+    @endforeach
+
     <div id="app"></div>
 
     @if (session('status'))

@@ -50,7 +50,7 @@
     <input id="user_id" type="hidden" name="user" value="1" required/>
 
     
-    <input class="button" type="submit" name="" value="Add to cart">
+    <input class="button" type="submit" name="" value="Confirm order">
 
     @if (Session::has('order_success_message'))
 
