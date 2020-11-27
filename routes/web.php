@@ -44,3 +44,5 @@ Route::get('/category/{id}/filter', 'Product\ProductController@filter')->name('c
 Route::post('/cart/add', 'AddController@add');
 Route::post('/try', 'TryController@try');
 
+Route::get('/admin/product/{id?}/{variant?}', 'Admin\ProductController@show')->name('admin.product.show');
+

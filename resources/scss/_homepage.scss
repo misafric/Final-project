@@ -12,24 +12,44 @@ html {
 }
 
 .img-1 {
-    background: url("https://cdn.pixabay.com/photo/2016/03/09/09/59/men-1245982_960_720.jpg")
+    background: url("../img/categories/men-category.jpg")
         center/cover no-repeat fixed;
 }
+
+// .img-1-bckp {
+//     background: url("https://cdn.pixabay.com/photo/2016/03/09/09/59/men-1245982_960_720.jpg")
+//         center/cover no-repeat fixed;
+// }
 
 .img-2 {
-    background: url("https://cdn.pixabay.com/photo/2016/10/22/18/36/climbing-1761386_960_720.jpg")
+    background: url("../img/categories/women-category.jpg")
         center/cover no-repeat fixed;
 }
+
+// .img-2-bckp {
+//     background: url("https://cdn.pixabay.com/photo/2016/10/22/18/36/climbing-1761386_960_720.jpg")
+//         center/cover no-repeat fixed;
+// }
 
 .img-3 {
-    background: url("https://cdn.pixabay.com/photo/2019/09/04/14/24/hut-4451771_960_720.jpg")
+    background: url("../img/categories/children-category.jpg")
         center/cover no-repeat fixed;
 }
 
+// .img-3-bckp {
+//     background: url("https://cdn.pixabay.com/photo/2019/09/04/14/24/hut-4451771_960_720.jpg")
+//         center/cover no-repeat fixed;
+// }
+
 .img-4 {
-    background: url("https://cdn.pixabay.com/photo/2015/09/09/17/57/ski-932188_960_720.jpg")
+    background: url("../img/categories/equipment-category.jpg")
         center/cover no-repeat fixed;
 }
+
+// .img-4-bckp {
+//     background: url("https://cdn.pixabay.com/photo/2015/09/09/17/57/ski-932188_960_720.jpg")
+//         center/cover no-repeat fixed;
+// }
 
 a {
     text-decoration: none;

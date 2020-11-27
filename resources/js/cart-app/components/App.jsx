@@ -87,7 +87,7 @@ function App() {
                         Unit Price: {item.order_unit_price}CZK <br/>
                         <input type="hidden" name="order_unit_price[]" value={item.order_unit_price} form="order_form"/>
                         Order Qty: <input type="number" id={i} value={item.order_qty} min="1" onChange={handleQtyChange} name="order_qty[]" form="order_form"/> <br/>
-                        {(item.order_qty > item.stock_qty) ? (<>Will cause delay until {item.next_restock}</>) : (<></>)}
+                        {(item.order_qty*1 > item.stock_qty*1) ? (<>Will cause delay until {item.next_restock}</>) : (<></>)}
                         <form action="/api/cart/remove" method="post">
                             <input type="hidden" name="_token" value={csrf_token} />
                             <input type="hidden" name="cart_item_id" value={i} />
