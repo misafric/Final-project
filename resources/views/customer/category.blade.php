@@ -48,48 +48,53 @@ function find_default_link ($product) {
 ?>
 
 <div class="category-container">
-<div class="filters-container">
+    <div class="filters-container">
 
-<form action="{{ action('Product\ProductController@filter',[$category_id]) }}" method="get">
-    @foreach ($filters as $filter)
-        <div class="filter">
-            <h3>{{$filter['name']}}</h3>
-            @foreach ($filter['tags'] as $filter_value)
-                <input type="checkbox" name="{{$filter['is_product_level'].'-'.$filter['id'].'-'.$filter_value['id']}}"
-                {{in_array($filter['is_product_level'].'-'.$filter['id'].'-'.$filter_value['id'],$active_filters) ? 'checked' : ''}}
-                >
-                <label>{{$filter_value['name']}}</label>
-            @endforeach
-        </div>
-    @endforeach
+    <form action="{{ action('Product\ProductController@filter',[$category_id]) }}" method="get">
+        @foreach ($filters as $filter)
+            <div class="filter">
+                <h3>{{$filter['name']}}</h3>
+                @foreach ($filter['tags'] as $filter_value)
+                    <input type="checkbox" name="{{$filter['is_product_level'].'-'.$filter['id'].'-'.$filter_value['id']}}"
+                    {{in_array($filter['is_product_level'].'-'.$filter['id'].'-'.$filter_value['id'],$active_filters) ? 'checked' : ''}}
+                    >
+                    <label>{{$filter_value['name']}}</label>
+                @endforeach
+            </div>
+        @endforeach
 
-    <input class="filter-button" type="submit" value="Filter">
+        <input class="filter-button" type="submit" value="Filter">
 
-</form>
+    </form>
 
-<a href="{{ action('Product\ProductController@index',[$category_id]) }}"><button class="clear-button">Clear filters</button></a>
+    <a href="{{ action('Product\ProductController@index',[$category_id]) }}"><button class="clear-button">Clear filters</button></a>
 
 
-</div>
-
-@foreach ($products as $p)
-
-<article class="product">
-    <div>
-        <a class="product__link" href="{{ route('customer.product.show',[$p->id,find_default_link($p)]) }}" alt="">
-        <img class="product__img" src="/img/goods/{{ find_default_pic($p)}}" alt="{{ $p->name }}"/>
-        </a><br>
-        <h2 class="product__name">{{ $p->name }}</h2>
     </div>
 
-    <div>
-        <span class="product__price">Price: {{$p->unit_price}}CZK</span>
-        <p class="product__description">{{$p->description_short}}</p>
+    <div class="products">
+    @foreach ($products as $p)
+
+    <article class="product">
         
+            <div>
+                <a class="product__link" href="{{ route('customer.product.show',[$p->id,find_default_link($p)]) }}" alt="">
+                <img class="product__img" src="/img/goods/{{ find_default_pic($p)}}" alt="{{ $p->name }}"/>
+                </a><br>
+                <h2 class="product__name">{{ $p->name }}</h2>
+            </div>
+
+            <div>
+                <span class="product__price">Price: {{$p->unit_price}}CZK</span>
+                <p class="product__description">{{$p->description_short}}</p>
+                
+            </div>
+    
+    </article>
+    @endforeach
     </div>
-</article>
 </div>
 
-@endforeach
+
     
 @endsection

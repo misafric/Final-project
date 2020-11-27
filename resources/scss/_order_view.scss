@@ -1,5 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Ubuntu:wght@500&display=swap');
-
 .view-container {
-    font-family: 'Montserrat', sans-serif;
+    font-family: $base-font;
+    margin: 3rem;
+    margin-bottom: 20rem;
+}
+
+.summary {
+    font-size: x-large;
+}
+
+#alert {
+    font-size: xx-large;
 }

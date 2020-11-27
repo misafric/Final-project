@@ -153,7 +153,7 @@ function App() {
                             }
                         )}
 
-                        <button onClick={shareURL}>Share</button><br/>
+                        {/* <button onClick={shareURL}>Share</button><br/> */}
                         
                         <div className="order-form">
                             <input type="hidden" name="product_id" value={product_id} form="order_form"/>
@@ -161,7 +161,7 @@ function App() {
                             <input type="number" onChange={handleQtyChange} name="order_qty" value={orderQty} min="1" form="order_form"/>
                             <input type="hidden" name="next_restock" value={dataSet.articles[currentSelectionId].next_restock} form="order_form"/>
                             <input type="hidden" name="stock_qty" value={dataSet.articles[currentSelectionId].stock_qty} form="order_form"/>
-                            <input type="submit" value="Order" form="order_form"/>
+                            <input type="submit" value="Add to cart" form="order_form"/>
                             {(orderQty > dataSet.articles[currentSelectionId].stock_qty) ?
                                 (<>
                                     <br/>We're sorry, we don't have this many items on stock. Your delivery will take until {dataSet.articles[currentSelectionId].next_restock} to complete
