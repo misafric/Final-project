@@ -132,20 +132,24 @@ function App() {
 
     return (
         <>
+
             {
                 loaded ? (
-                    <div>
+                    <div className="wrap-all">
+<div className="wrap-image">
                         {dataSet.articles[currentSelectionId].images[0] ? (
                         <>
-                            <img src={'/img/goods/' + dataSet.articles[currentSelectionId].images[currentImg].url}
+                            <img className="img_product_detail" src={'/img/goods/' + dataSet.articles[currentSelectionId].images[currentImg].url}
                                 alt={dataSet.articles[currentSelectionId].images[0].url}
                                 onClick={handleImgChange}
                                 style={{cursor: 'pointer'}}/> <br/>
                         </>) : (
                         <h3>NO IMAGE IN DATABASE, WE'RE SORRY</h3>
-                        )
+                        
+                        )                        
                         }
-
+</div>                        
+<div className="filter-form">
                         <br/> {dataSet.articles[currentSelectionId].tags.map ((t,i) => {
                             
                             return (t.tag_category.is_visible == 1) ? (
@@ -167,25 +171,29 @@ function App() {
                             }
                         )}
 
-                        <button onClick={shareURL}>Share</button><br/>
+                        {/* <button onClick={shareURL}>Share</button><br/> */}
                         
                         <div className="order-form">
                             <input type="hidden" name="product_id" value={product_id} form="order_form"/>
                             <input type="hidden" name="article_id" value={dataSet.articles[currentSelectionId].id} form="order_form"/>
-                            <input type="number" onChange={handleQtyChange} name="order_qty" value={orderQty} min="1" form="order_form"/>
+                            <input className="input-order-quantity" type="number" onChange={handleQtyChange} name="order_qty" value={orderQty} min="1" form="order_form"/>
                             <input type="hidden" name="next_restock" value={dataSet.articles[currentSelectionId].next_restock} form="order_form"/>
-                            <input type="hidden" name="stock_qty" value={dataSet.articles[currentSelectionId].stock_qty} form="order_form"/>
-                            <input type="submit" value="Order" form="order_form"/>
+                            <input type="hidden" name="stock_qty" value={dataSet.articles[currentSelectionId].stock_qty} form="order_form"/><br/><br/>
+                            <input className="add" type="submit" value="Add to cart" form="order_form"/>
+                            <div className="sentence">
                             {(orderQty > dataSet.articles[currentSelectionId].stock_qty) ?
                                 (<>
-                                    <br/>We're sorry, we don't have this many items on stock. Your delivery will take until {dataSet.articles[currentSelectionId].next_restock} to complete
+                                    <br/> We're sorry, we don't have this many items on stock. Your delivery will take until {dataSet.articles[currentSelectionId].next_restock} to complete
                                     
                                 </>) : (
                                 <></>
                                 )}
+                                </div>
+                                
                         </div>
                         
                     </div>
+</div>                    
                 ) : (
                     <div>Loading</div>
                 )
@@ -194,5 +202,6 @@ function App() {
         </>
     )
 }
+
 
 export default App;
