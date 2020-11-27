@@ -79,39 +79,47 @@ function App() {
         {(!loaded) ? (<>Loading</>) :(
             <div className='cart-items'>
                 {dataSet.map((item,i) => { return(
-                    <div className="cart-item" key={i}>
-                        <img className='cart-item__image' src={'/img/goods/'+item.image_url} alt=""/><br/>
-                        Product Name: {item.product_name + ' ' +item.identifiers}<br/>
-                        {/* Article ID (just for check, actually in hidden input): {item.article_id} <br/> */}
-                        <input type="hidden" name="article_id[]" id="input_article_id" value={item.article_id} form="order_form"/>
-                        Unit Price: {item.order_unit_price}CZK <br/>
-                        <input type="hidden" name="order_unit_price[]" value={item.order_unit_price} form="order_form"/>
-                        Order Qty: <input type="number" id={i} value={item.order_qty} min="1" onChange={handleQtyChange} name="order_qty[]" form="order_form"/> <br/>
-                        {(item.order_qty*1 > item.stock_qty*1) ? (<>Will cause delay until {item.next_restock}</>) : (<></>)}
-                        <form action="/api/cart/remove" method="post">
-                            <input type="hidden" name="_token" value={csrf_token} />
-                            <input type="hidden" name="cart_item_id" value={i} />
-                            <input type="submit" value="Remove from Cart" />
-                        </form>
-                        <br/>
-                    </div>
-                )})}
-            {(dataSet.length===0) ? (<><h3>Your cart is currently empty.</h3></>) :
-            (
-            <>  
-                <h3>Total Amount: {totalAmount}CZK</h3>
-                <h4>Delivery Date: {deliveryDate}</h4>
-                <br/>
-                
-                {/* {articleDDs.map((dd) => {
-                    <><h6>{dd}</h6><br/></>
-                })
-                } */}
+                    <div>
+                        <div className="wrap" key={i}>
+                        <div className="cart-item-wrap-image-name">
+                                <img className='cart-item__image' src={'/img/goods/'+item.image_url} alt=""/><br/>
+                                <span className="cart-item-name">{item.product_name + ' ' +item.identifiers}</span><br/><br/>
+                        </div>
+                            {/* Article ID (just for check, actually in hidden input): {item.article_id} <br/> */}
+                            <input type="hidden" name="article_id[]" id="input_article_id" value={item.article_id} form="order_form"/>
+                            <div className="cart-item-wrap-price-ordered-amount">
+                                Price: {item.order_unit_price}CZK <br/>
+                                <input type="hidden" name="order_unit_price[]" value={item.order_unit_price} form="order_form"/>
+                                Ordered amount: <input className="cart-item-ordered-amount" type="number" id={i} value={item.order_qty} min="1" onChange={handleQtyChange} name="order_qty[]" form="order_form"/> <br/>
 
-                <form action="/api/cart/empty" method="post">
-                    <input type="hidden" name="_token" value={csrf_token} />
-                    <input type="submit" value="Empty Cart"></input>
-                </form>
+                                <div className="sentence"> {(item.order_qty*1 > item.stock_qty*1) ? (<>Will cause delay until {item.next_restock}</>) : (<></>)}</div>
+                            </div>
+                    </div>    
+                            <form className="form" action="/api/cart/remove" method="post">
+                                <input type="hidden" name="_token" value={csrf_token} />
+                                <input type="hidden" name="cart_item_id" value={i} />
+                                <input type="submit" value="Remove from Cart" />
+                            </form>
+                             <hr/>
+                            <br/>
+                        </div>
+                )})}
+            {(dataSet.length===0) ? (<><h3 className="cart-sentence">Your cart is currently empty.</h3></>) : 
+            (
+            <>  <div className="wrap-total">
+                    <h3>Total: {totalAmount} CZK</h3>
+                    <h4>Delivery Date: {deliveryDate}</h4>
+                    
+                    {/* {articleDDs.map((dd) => {
+                        <><h6>{dd}</h6><br/></>
+                    })
+                    } */}
+
+                    <form action="/api/cart/empty" method="post">
+                        <input type="hidden" name="_token" value={csrf_token} />
+                        <input type="submit" value="Empty Cart"></input>
+                    </form>
+                </div>
             </>)
             }
             </div>

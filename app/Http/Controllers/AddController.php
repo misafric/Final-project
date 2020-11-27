@@ -70,7 +70,7 @@ class AddController extends Controller
 
         CartController::empty_static($request);
 
-        session()->flash('order_success_message', 'Thank you for shopping with us, you can track your order status at '.$order_url);
+        session()->flash('order_success_message', $order_url);
         session()->flash('order_created',true);
         session()->flash('order_url', $order_url);
 

@@ -132,20 +132,24 @@ function App() {
 
     return (
         <>
+
             {
                 loaded ? (
-                    <div>
+                    <div className="wrap-all">
+<div className="wrap-image">
                         {dataSet.articles[currentSelectionId].images[0] ? (
                         <>
-                            <img src={'/img/goods/' + dataSet.articles[currentSelectionId].images[currentImg].url}
+                            <img className="img_product_detail" src={'/img/goods/' + dataSet.articles[currentSelectionId].images[currentImg].url}
                                 alt={dataSet.articles[currentSelectionId].images[0].url}
                                 onClick={handleImgChange}
                                 style={{cursor: 'pointer'}}/> <br/>
                         </>) : (
                         <h3>NO IMAGE IN DATABASE, WE'RE SORRY</h3>
-                        )
+                        
+                        )                        
                         }
-
+</div>                        
+<div className="filter-form">
                         <br/> {dataSet.articles[currentSelectionId].tags.map ((t,i) => {
                             
                             return (t.tag_category.is_visible == 1) ? (
@@ -156,37 +160,42 @@ function App() {
                         {availableFilters.map((c,i) =>
                             {
                             return <>
-                                    {c.name}: <select onChange={handleFilterChange} name={c.name} id={c.order} key={'select'+c.order}
-                                        value={currentSelection.values[i]} >
-                                        {c.values.map((v,i) => <option key={'option'+i} value={v.value}
-                                            >{v.name}</option>)
-                                        }
-
-                                    </select>
+                                    <div>
+                                        {c.name}:<br/> <select onChange={handleFilterChange} name={c.name} id={c.order} key={'select'+c.order}
+                                            value={currentSelection.values[i]} >
+                                            {c.values.map((v,i) => <option key={'option'+i} value={v.value}
+                                                >{v.name}</option>)
+                                            }
+    
+                                        </select>
+                                    </div>
                                     </>
                             }
                         )}
 
-                        <button onClick={shareURL}>Share</button><br/>
+                        {/* <button onClick={shareURL}>Share</button><br/> */}
                         
                         <div className="order-form">
                             <input type="hidden" name="product_id" value={product_id} form="order_form"/>
                             <input type="hidden" name="article_id" value={dataSet.articles[currentSelectionId].id} form="order_form"/>
-                            <input type="number" onChange={handleQtyChange} name="order_qty" value={orderQty} min="1" form="order_form"/>
+                            <input className="input-order-quantity" type="number" onChange={handleQtyChange} name="order_qty" value={orderQty} min="1" form="order_form"/>
                             <input type="hidden" name="next_restock" value={dataSet.articles[currentSelectionId].next_restock} form="order_form"/>
-                            <input type="hidden" name="stock_qty" value={dataSet.articles[currentSelectionId].stock_qty} form="order_form"/>
-                            <input type="submit" value="Add to cart" form="order_form"/>
-                            {/* <button type="submit" form="order_form">Add to cart</button> */}
+                            <input type="hidden" name="stock_qty" value={dataSet.articles[currentSelectionId].stock_qty} form="order_form"/><br/><br/>
+                            <input className="add" type="submit" value="Add to cart" form="order_form"/>
+                            <div className="sentence">
                             {(orderQty*1 > dataSet.articles[currentSelectionId].stock_qty*1) ?
                                 (<>
-                                    <br/>We're sorry, we don't have this many items on stock. Your delivery will take until {dataSet.articles[currentSelectionId].next_restock} to complete
+                                    <br/> We're sorry, we don't have this many items on stock. Your delivery will take until {dataSet.articles[currentSelectionId].next_restock} to complete
                                     
                                 </>) : (
                                 <></>
                                 )}
+                                </div>
+                                
                         </div>
                         
                     </div>
+</div>                    
                 ) : (
                     <div>Loading</div>
                 )
@@ -195,5 +204,6 @@ function App() {
         </>
     )
 }
+
 
 export default App;

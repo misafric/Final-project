@@ -34,7 +34,7 @@
     </div>
 
     <p class="country-input-wrap">
-        Country:<br><br>
+        Country:<br>
         <label for="country_id">Czechia:</label>
         <input id="1" type="radio" name="country_id" value="1" required/>
         <label for="country_id">Slovakia:</label>
@@ -50,7 +50,7 @@
     <input id="user_id" type="hidden" name="user" value="1" required/>
 
     
-    <input class="button" type="submit" name="" value="Confirm">
+    <div class="confirm-button"><input class="button" type="submit" name="" value="Confirm"></div>
 
     @if (Session::has('order_success_message'))
 

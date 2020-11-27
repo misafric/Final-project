@@ -29,3 +29,52 @@
 textarea {
     border: 3px solid #ccc;
 }
+
+.cart-item__image {
+    height: 100px;
+    width: 100px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+}
+
+.cart-item-name {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.cart-item-ordered-amount {
+    width: 50px;
+}
+
+.cart-item-wrap-price-ordered-amount {
+    margin-top: 60px;
+}
+
+.wrap {
+    display: flex;
+    justify-content: space-between;
+    width: 400px;
+    margin-left: 20px;
+}
+
+.form {
+    margin-left: 20px;
+}
+
+.wrap-total {
+    margin-left: 20px;
+}
+
+.sentence {
+    color: red;
+}
+
+.sentence-green {
+    color: rgb(18, 180, 18);
+}
+
+.confirm-button {
+    margin-left: 400px;
+    margin-bottom: 10px;
+}
