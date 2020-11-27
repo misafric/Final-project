@@ -29,6 +29,7 @@ class ImageSeeder extends Seeder
             ['timberland-f-brown.jpg'],
             ['keen-f-black.jpg'],
             ['keen-f-brown.jpg'],
+            ['keen-f-brown-second.jpg'],
         ];
 
         $fields_string = implode(',', $fields);

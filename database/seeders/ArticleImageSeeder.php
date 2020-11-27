@@ -36,7 +36,11 @@ class ArticleImageSeeder extends Seeder
             [9,5],
             [10,5],
             [11,6],
-            [12,6]
+            [12,6],
+            [14,6],
+            [11,7],
+            [12,7],
+            [14,7],
         ];
 
         $fields_string = implode(',', $fields);
