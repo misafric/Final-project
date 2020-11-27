@@ -1,11 +1,9 @@
-html {
-    font-family: 16px;
-}
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Ubuntu:wght@500&display=swap');
 
 .img-background {
     background-color: rgba(11, 65, 11, 0.562);
     min-width: 2rem;
-    min-height: 35rem;
+    min-height: 30rem;
     //    width: 500px;
     //    height: 500px;
     //    text-align: center;
@@ -16,9 +14,9 @@ html {
         center/cover no-repeat fixed;
 }
 
-.img-2 {
-    background: url("https://cdn.pixabay.com/photo/2016/10/22/18/36/climbing-1761386_960_720.jpg")
-        center/cover no-repeat fixed;
+.img-2 { background: url("https://images.pexels.com/photos/248568/pexels-photo-248568.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940") center/cover no-repeat fixed;
+//background: url("https://cdn.pixabay.com/photo/2016/10/22/18/36/climbing-1761386_960_720.jpg")
+//center/cover no-repeat fixed;
 }
 
 .img-3 {
@@ -45,26 +43,23 @@ a {
 // }
 
 .inside a {
+    display: flex;
+    text-align: center;
+    padding-top: 4.5rem;
+    padding-left: 4rem;
     color: white;
-    margin-bottom: 50px;
-    text-align: justify;
-    margin: 20px;
-    padding: 3px;
-    outline: 2.3px solid #ddd;
-    border: #a1a1a1;
-    float: left;
-    -webkit-transition: margin 0.5s ease-out;
-    -moz-transition: margin 0.5s ease-out;
-    -o-transition: margin 0.5s ease-out;
+    text-transform: uppercase;
+    font-size: 32px;
+    font-family: 'Montserrat', sans-serif;
 }
+
+// .inside a:hover {
+//     cursor: pointer;
+//     margin-bottom: 5px;
+// }
 
 .nav-container a {
     color: black;
-}
-
-.inside a:hover {
-    cursor: pointer;
-    margin-bottom: 5px;
 }
 
 .navbar {

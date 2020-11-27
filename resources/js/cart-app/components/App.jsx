@@ -100,11 +100,11 @@ function App() {
                                 <input type="hidden" name="cart_item_id" value={i} />
                                 <input type="submit" value="Remove from Cart" />
                             </form>
-                             <hr></hr>
+                             <hr/>
                             <br/>
                         </div>
                 )})}
-            {(dataSet.length===0) ? (<><h3>Your cart is currently empty.</h3></>) :
+            {(dataSet.length===0) ? (<><h3 className="cart-sentence">Your cart is currently empty.</h3></>) : 
             (
             <>  <div className="wrap-total">
                     <h3>Total: {totalAmount} CZK</h3>
